@@ -75,7 +75,6 @@ onMounted(() => {
     selectedMenu.value = getQuery.value;
   } else {
     selectedMenu.value = toKebabCase(menus.value[0].title);
-    router.push(`${route.path}?menu=${selectedMenu.value}`);
   }
 });
 </script>

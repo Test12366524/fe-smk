@@ -1,6 +1,6 @@
 <template>
   <article class="blog-content">
-    <h4 class="use-text-title2 title-blog">Struktur Kepengurusan</h4>
+    <h4 class="use-text-title2 title-blog">{{ getTitle }}</h4>
     <time class="caption">June 19, 2024 by Admin</time>
     <figure class="image-blog">
       <img :src="imgAPI.photo[8]" alt="blog" />
@@ -86,56 +86,63 @@
 @import './blog-style.scss';
 </style>
 
-<script>
-import Form from '../Comment/Form';
-import Item from '../Comment/Item';
+<script setup>
+import { computed } from 'vue';
 import imgAPI from '@/assets/images/imgAPI';
+import { useDisplay } from 'vuetify';
 
-export default {
-  components: {
-    'comment-item': Item,
-    'comment-form': Form,
+const { xs } = useDisplay();
+
+const route = useRoute();
+const selectedMenu = computed(() => route.query.menu || 'sejarah-singkat');
+const getTitle = ref('');
+const menus = ref([
+  {
+    key: 'sejarah-singkat',
+    title: 'Sejarah Singkat MAN 1 Yogyakarta',
   },
-  data() {
-    return {
-      imgAPI,
-      comments: [
-        {
-          name: 'John Doe',
-          avatar: '/images/avatars/pp_boy4.svg',
-          date: '13 Jan 2020',
-          comment:
-            'Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam. Vestibulum feugiat rhoncus metus. In non erat et ipsum molestie porta sit amet ut felis. Vestibulum a massa vestibulum, gravida odio id, fringilla ipsum.',
-        },
-        {
-          name: 'John Doe',
-          avatar: '/images/avatars/pp_boy4.svg',
-          date: '13 Jan 2020',
-          comment:
-            'Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam. Vestibulum feugiat rhoncus metus. In non erat et ipsum molestie porta sit amet ut felis. Vestibulum a massa vestibulum, gravida odio id, fringilla ipsum.',
-        },
-        {
-          name: 'John Doe',
-          avatar: '/images/avatars/pp_boy4.svg',
-          date: '13 Jan 2020',
-          comment:
-            'Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam. Vestibulum feugiat rhoncus metus. In non erat et ipsum molestie porta sit amet ut felis. Vestibulum a massa vestibulum, gravida odio id, fringilla ipsum.',
-        },
-        {
-          name: 'John Doe',
-          avatar: '/images/avatars/pp_boy4.svg',
-          date: '13 Jan 2020',
-          comment:
-            'Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam. Vestibulum feugiat rhoncus metus. In non erat et ipsum molestie porta sit amet ut felis. Vestibulum a massa vestibulum, gravida odio id, fringilla ipsum.',
-        },
-      ],
-    };
+  {
+    key: 'visi-misi',
+    title: 'Visi Misi MAN 1 Yogyakarta',
   },
-  computed: {
-    isMobile() {
-      const xsDown = this.$vuetify.display.xs;
-      return xsDown;
-    },
+  {
+    key: 'sarana-prasarana',
+    title: 'Sarana Prasarana',
   },
+  {
+    key: 'kepala-madrasah',
+    title: 'Kepala Madrasah',
+  },
+  {
+    key: 'struktur-kepengurusan',
+    title: 'Struktur Kepengurusan',
+  },
+  {
+    key: 'pendidik',
+    title: 'Pendidik',
+  },
+  {
+    key: 'tenaga-kependidikan',
+    title: 'Tenaga Kependidikan',
+  },
+  {
+    key: 'peserat-didik',
+    title: 'Peserta Didik',
+  },
+]);
+
+const handleSetContent = (keyValue) => {
+  const pageTitle = menus.value.find((menu) => menu.key === keyValue).title;
+  getTitle.value = pageTitle || 'Visi Misi MAN 1 Yogyakarta';
 };
+
+watch(selectedMenu, (newValue) => {
+  handleSetContent(newValue);
+});
+
+onMounted(() => {
+  handleSetContent(selectedMenu.value);
+});
+
+const isMobile = computed(() => xs.value);
 </script>

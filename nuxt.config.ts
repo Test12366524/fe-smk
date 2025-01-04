@@ -150,17 +150,17 @@ export default defineNuxtConfig({
     langDir: 'lang',
     defaultLocale: 'id',
     strategy: 'prefix',
-    // detectBrowserLanguage: {
-    //   useCookie: true,
-    //   cookieKey: 'i18n_redirected',
-    //   redirectOn: 'root',  // recommended
-    // },
-    // vueI18n: './config/i18n.js', // use this options for next vueI18n version
-    // vueI18n: {
-    //   legacy: false,
-    //   locale: 'en',
-    //   fallbackLocale: 'en',
-    // },
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root', // recommended
+    },
+    vueI18n: './config/i18n.js', // use this options for next vueI18n version
+    vueI18n: {
+      legacy: false,
+      locale: 'id',
+      fallbackLocale: 'id',
+    },
   },
 
   vite: {

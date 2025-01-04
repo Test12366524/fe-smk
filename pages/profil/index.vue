@@ -5,24 +5,7 @@
       <v-container class="mt-10 mt-sm-0">
         <v-row>
           <v-col md="8" cols="12">
-            <VisiMisiSection v-if="selectedMenu === menus.visiMisi" />
-            <SaranaPrasaranaSection
-              v-else-if="selectedMenu === menus.saranaPrasarana"
-            />
-            <KepalaMadrasahSection
-              v-else-if="selectedMenu === menus.kepalaMadrasah"
-            />
-            <StrukturKepengurusanSection
-              v-else-if="selectedMenu === menus.strukturKepengurusan"
-            />
-            <PendidikSection v-else-if="selectedMenu === menus.pendidik" />
-            <TenagaKependidikanSection
-              v-else-if="selectedMenu === menus.tenagaKependidikan"
-            />
-            <PesertaDidikSection
-              v-else-if="selectedMenu === menus.peseratDidik"
-            />
-            <SejarahSingkatSection v-else />
+            <ProfileSections />
           </v-col>
           <v-col md="4" cols="12">
             <sidebar @handleSelectMenu="handleSelectMenu" />
@@ -45,17 +28,12 @@ import brand from '@/assets/text/brand';
 import MainHeader from '@/components/Header';
 import Sidebar from '@/components/Profil/Sidebar';
 import MainFooter from '@/components/Footer';
-import VisiMisiSection from '~/components/Profil/VisiMisiSection.vue';
-import SejarahSingkatSection from '~/components/Profil/SejarahSingkatSection.vue';
-import SaranaPrasaranaSection from '~/components/Profil/SaranaPrasaranaSection.vue';
-import KepalaMadrasahSection from '~/components/Profil/KepalaMadrasahSection.vue';
-import StrukturKepengurusanSection from '~/components/Profil/StrukturKepengurusanSection.vue';
-import PendidikSection from '~/components/Profil/PendidikSection.vue';
-import TenagaKependidikanSection from '~/components/Profil/tenagaKependidikanSection.vue';
-import PesertaDidikSection from '~/components/Profil/PesertaDidikSection.vue';
+import ProfileSections from '~/components/Profil/ProfileSections.vue';
 
 const route = useRoute();
+const router = useRouter();
 const selectedMenu = ref('');
+const getQuery = computed(() => route.query.menu);
 const menus = {
   sejarahSingkat: 'sejarah-singkat',
   visiMisi: 'visi-misi',
@@ -73,8 +51,12 @@ const handleSelectMenu = (menu) => {
 };
 
 onMounted(() => {
-  const getMenu = route.query.menu || menus.sejarahSingkat;
-  handleSelectMenu(getMenu);
+  if (getQuery.value) {
+    selectedMenu.value = getQuery.value;
+  } else {
+    selectedMenu.value = menus.sejarahSingkat;
+    router.push(`${route.path}?menu=${selectedMenu.value}`);
+  }
 });
 
 useHead({
