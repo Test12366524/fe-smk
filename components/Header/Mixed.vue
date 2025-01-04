@@ -101,20 +101,20 @@ export default {
         createData(navMenu[1], navMenu[1]),
         createData(navMenu[2], navMenu[2]),
         createData(navMenu[3], navMenu[3]),
-        createData(navMenu[4], navMenu[3]),
-        createData(navMenu[5], navMenu[3]),
-        createData(navMenu[6], navMenu[3]),
-        createData(navMenu[7], navMenu[3], -40),
+        createData(navMenu[4], navMenu[4]),
+        createData(navMenu[5], navMenu[5]),
+        createData(navMenu[6], navMenu[6]),
+        createData(navMenu[7], navMenu[7], -40),
       ],
       menuPrimary: [
         createData(navMenu[0], navMenu[0]),
         createData(navMenu[1], navMenu[1]),
         createData(navMenu[2], navMenu[2]),
         createData(navMenu[3], navMenu[3]),
-        createData(navMenu[4], navMenu[3]),
-        createData(navMenu[5], navMenu[3]),
-        createData(navMenu[6], navMenu[3]),
-        createData(navMenu[7], navMenu[3], -40),
+        createData(navMenu[4], navMenu[4]),
+        createData(navMenu[5], navMenu[5]),
+        createData(navMenu[6], navMenu[6]),
+        createData(navMenu[7], navMenu[7], -40),
       ],
     };
   },
@@ -130,7 +130,6 @@ export default {
   },
   mounted() {
     this.handelSetActiveMenu();
-    console.log('menu', this.menuPrimary);
   },
   methods: {
     handelSetActiveMenu() {
