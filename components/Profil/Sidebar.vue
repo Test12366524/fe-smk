@@ -15,8 +15,8 @@
             :class="{ active: toKebabCase(item.title) === selectedMenu }"
           >
             <div
-              @click="() => handleSelectMenu(toKebabCase(item.title))"
               style="cursor: pointer"
+              @click="() => handleSelectMenu(toKebabCase(item.title))"
             >
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </div>
@@ -36,35 +36,27 @@ const router = useRouter();
 const menus = ref([
   {
     title: 'Sejarah Singkat',
-    item: 'Jan 9, 2014',
   },
   {
     title: 'Visi Misi',
-    item: 'Jan 9, 2014',
   },
   {
     title: 'Sarana Prasarana',
-    item: 'Jan 9, 2014',
   },
   {
     title: 'Kepala Madrasah',
-    item: 'Jan 9, 2014',
   },
   {
     title: 'Struktur Kepengurusan',
-    item: 'Jan 9, 2014',
   },
   {
     title: 'Pendidik',
-    item: 'Jan 9, 2014',
   },
   {
     title: 'Tenaga Kependidikan',
-    item: 'Jan 9, 2014',
   },
   {
     title: 'Peserat Didik',
-    item: 'Jan 9, 2014',
   },
 ]);
 
