@@ -1,17 +1,14 @@
 <template>
   <div class="root">
     <title-main
-      :head="$t('education.testimonials_title')"
-      :desc="$t('education.testimonials_desc')"
+      head="Alumni Sekolah Kami"
+      desc="beberapa alumni berprestasi dari sekolah kami"
       align="center"
       color="primary"
     />
     <div class="slider-wrap">
       <div v-if="loaded" class="carousel">
-        <splide
-          ref="slider"
-          :options="slickOptions"
-        >
+        <splide ref="slider" :options="slickOptions">
           <splide-slide v-for="(item, index) in testiContent" :key="index">
             <div class="item">
               <testi-card
@@ -22,20 +19,10 @@
             </div>
           </splide-slide>
         </splide>
-        <v-btn
-          icon
-          fab
-          class="nav prev"
-          @click="slickPrev()"
-        >
+        <v-btn icon fab class="nav prev" @click="slickPrev()">
           <i class="ion-ios-arrow-left" />
         </v-btn>
-        <v-btn
-          icon
-          fab
-          class="nav next"
-          @click="slickNext()"
-        >
+        <v-btn icon fab class="nav next" @click="slickNext()">
           <i class="ion-ios-arrow-right" />
         </v-btn>
       </div>
@@ -54,20 +41,17 @@ import TestiCard from '../../Cards/TestiCard2';
 
 const testiData = [
   {
-    text:
-      'Vivamus sit amet interdum elit. Proin lacinia erat ac velit tempus auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam nec ex aliquet, aliquam neque non.',
+    text: 'Vivamus sit amet interdum elit. Proin lacinia erat ac velit tempus auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam nec ex aliquet, aliquam neque non.',
     name: 'John Doe',
     title: 'Chief Digital Officer',
   },
   {
-    text:
-      'Vestibulum sit amet tortor sit amet libero lobortis semper at et odio. In eu tellus tellus. Pellentesque ullamcorper aliquet ultrices. Aenean facilisis vitae purus facilisis semper. Nam vitae scelerisque lorem, quis tempus libero.',
+    text: 'Vestibulum sit amet tortor sit amet libero lobortis semper at et odio. In eu tellus tellus. Pellentesque ullamcorper aliquet ultrices. Aenean facilisis vitae purus facilisis semper. Nam vitae scelerisque lorem, quis tempus libero.',
     name: 'Jean Doe',
     title: 'Chief Digital Officer',
   },
   {
-    text:
-      'Cras convallis lacus orci, tristique tincidunt magna consequat in. In vel pulvinar est, at euismod libero.',
+    text: 'Cras convallis lacus orci, tristique tincidunt magna consequat in. In vel pulvinar est, at euismod libero.',
     name: 'Jena Doe',
     title: 'Graphic Designer',
   },
@@ -77,14 +61,12 @@ const testiData = [
     title: 'Senior Graphic Designer',
   },
   {
-    text:
-      'Cras convallis lacus orci, tristique tincidunt magna consequat in. In vel pulvinar est, at euismod libero.',
+    text: 'Cras convallis lacus orci, tristique tincidunt magna consequat in. In vel pulvinar est, at euismod libero.',
     name: 'Jihan Doe',
     title: 'CEO Software House',
   },
   {
-    text:
-      'Vestibulum sit amet tortor sit amet libero lobortis semper at et odio. In eu tellus tellus. Pellentesque ullamcorper aliquet ultrices. Aenean facilisis vitae purus facilisis semper. Nam vitae scelerisque lorem, quis tempus libero.',
+    text: 'Vestibulum sit amet tortor sit amet libero lobortis semper at et odio. In eu tellus tellus. Pellentesque ullamcorper aliquet ultrices. Aenean facilisis vitae purus facilisis semper. Nam vitae scelerisque lorem, quis tempus libero.',
     name: 'Jovelin Doe',
     title: 'Senior Graphic Designer',
   },

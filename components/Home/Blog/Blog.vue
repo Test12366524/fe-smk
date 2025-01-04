@@ -1,15 +1,17 @@
 <template>
   <div class="root">
-    <v-dialog
-      v-model="dialog"
-      max-width="690"
-    >
+    <v-dialog v-model="dialog" max-width="690">
       <v-card class="video-popup">
         <v-card-title class="headline">
           <h4 class="use-text-subtitle">
             {{ $t('education.blog_video') }}
           </h4>
-          <v-btn class="close-btn" variant="text" icon @click="handleVideoClose()">
+          <v-btn
+            class="close-btn"
+            variant="text"
+            icon
+            @click="handleVideoClose()"
+          >
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
@@ -32,8 +34,8 @@
     <v-container class="fixed-width">
       <div class="pa-md-8 pa-2">
         <title-main
-          :head="$t('education.blog_title')"
-          :desc="$t('education.blog_desc')"
+          head="Berita Terbaru"
+          desc="berita terbaru dari man 1 yogyakarta"
           :align="isMobile ? 'center' : 'left'"
           color="secondary"
         />
@@ -49,12 +51,8 @@
             <div class="video-wrap">
               <div v-if="loaded" class="video-carousel">
                 <v-card class="item">
-                  <img :src="imgAPI.education[14]" alt="cover">
-                  <v-btn
-                    icon
-                    class="play-btn"
-                    @click="handleVideoOpen"
-                  >
+                  <img :src="imgAPI.education[14]" alt="cover" />
+                  <v-btn icon class="play-btn" @click="handleVideoOpen">
                     <v-icon>mdi-play</v-icon>
                   </v-btn>
                 </v-card>
@@ -78,8 +76,13 @@
                 />
               </div>
             </div>
-            <v-btn class="more" :href="link.education.blog" variant="text" color="secondary">
-              more
+            <v-btn
+              class="more"
+              :href="link.education.blog"
+              variant="text"
+              color="secondary"
+            >
+              lihat selengkapnya
             </v-btn>
           </div>
         </v-col>
@@ -103,17 +106,20 @@ import Hidden from '../../Hidden';
 
 const blogData = [
   {
-    title: 'Vestibulum vitae tristique urna. Mauris non cursus quam',
+    title:
+      'Awali Tahun Baru MAN 1 Yogyakarta Adakan Peringatan Hari Amal Bhakti Tahun 2025',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },
   {
-    title: 'Vestibulum vitae tristique urna. Mauris non cursus quam',
+    title:
+      'Semangat Baru di Semester Genap: MAN 1 Yogyakarta Bahas Program Strategis',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },
   {
-    title: 'Vestibulum vitae tristique urna. Mauris non cursus quam',
+    title:
+      'Semangat Baru di Semester Genap: MAN 1 Yogyakarta Bahas Program Strategis',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },

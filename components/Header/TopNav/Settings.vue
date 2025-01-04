@@ -35,8 +35,8 @@
           </div>
         </v-list-item>
       </div>
-      <v-divider />
-      <div class="lang-menu">
+
+      <!-- <div class="lang-menu">
         <v-list-subheader>{{ $t('common.header_language') }}</v-list-subheader>
         <v-list-item
           v-for="(lang, index) in langList"
@@ -52,18 +52,15 @@
             </v-avatar>
           </template>
           <v-list-item-title class="lang-opt">
-            {{ $t('common.'+lang.code) }}
+            {{ $t('common.' + lang.code) }}
           </v-list-item-title>
           <template #append>
-            <v-icon
-              v-if="lang.code === curLang"
-              color="primary"
-            >
+            <v-icon v-if="lang.code === curLang" color="primary">
               mdi-check
             </v-icon>
           </template>
         </v-list-item>
-      </div>
+      </div> -->
     </v-list>
   </v-menu>
 </template>

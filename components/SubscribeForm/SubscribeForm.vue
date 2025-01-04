@@ -2,26 +2,14 @@
   <div class="root">
     <v-container class="max-sm">
       <h3 class="use-text-title2 mb-4">
-        {{ $t('common.blog_subscribe_desc') }}
+        PENDAFTARAN SISWA BARU ONLINE MAN 1 YOGYA
       </h3>
-      <p>Sed imperdiet enim ligula, vitae viverra justo porta vel. Duis eget felis bibendum, pretium mi sed, placerat ante. </p>
-      <div class="form">
-        <form>
-          <v-text-field
-            :placeholder="$t('common.form_email')"
-            variant="solo"
-            class="field"
-            full-width
-            hide-details
-          />
-          <v-btn
-            color="primary"
-            class="button"
-          >
-            <span>{{ $t('common.blog_subscribe') }}</span>
-          </v-btn>
-        </form>
-      </div>
+      <p>Daftar sekarang juga, disini.</p>
+      <section class="action-button">
+        <v-btn color="primary" class="button">
+          <span>Daftar PPDB</span>
+        </v-btn>
+      </section>
     </v-container>
   </div>
 </template>

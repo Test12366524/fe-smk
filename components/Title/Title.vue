@@ -1,15 +1,7 @@
 <template>
-  <div
-    :class="['align-' + align, { dark: dark }]"
-    class="title-main"
-  >
-    <h4
-      :class="color+'-color'"
-      class="use-text-title"
-    >
-      <span>
-        {{ head }}
-      </span>
+  <div :class="['align-' + align, { dark: dark }]" class="title-main">
+    <h4 :class="color + '-color'" class="use-text-title">
+      <span> {{ head }} </span>
     </h4>
     <p class="desc use-text-subtitle2">
       {{ desc }}

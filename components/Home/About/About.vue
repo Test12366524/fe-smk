@@ -16,7 +16,7 @@
                 :data-3d="imgAPI.education[38]"
                 class="img-2d3d"
                 alt="about"
-              >
+              />
             </div>
           </div>
         </v-col>
@@ -26,13 +26,13 @@
           cols="12"
         >
           <title-main
-            :head="$t('education.about_title')"
-            :desc="$t('education.about_desc')"
+            head="Tentang Kami"
+            desc="Selamat datang di MAN 1 Yogyakarta, tempat di mana pendidikan berkualitas dan nilai-nilai Islam berpadu harmonis. Kami berkomitmen untuk membentuk generasi yang berakhlak mulia, cerdas, dan berwawasan luas."
             :align="isMobile ? 'center' : 'left'"
             color="secondary"
           />
           <v-btn :href="link.education.login" class="btn" color="secondary">
-            {{ $t('education.about_join') }}
+            Kontak Kami
           </v-btn>
         </v-col>
       </v-row>

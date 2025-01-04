@@ -5,12 +5,7 @@
     max-width="1000"
   >
     <div class="figure">
-      <v-img
-        :src="img"
-        cover
-        class="white--text"
-        height="200px"
-      />
+      <v-img :src="img" cover class="white--text" height="200px" />
     </div>
     <div class="properties">
       <strong class="use-text-subtitle text-truncate">
@@ -33,7 +28,7 @@
           class="action-btn"
           color="primary"
         >
-          Read more
+          Selengkapnya
         </v-btn>
       </v-card-actions>
     </div>

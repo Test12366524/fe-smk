@@ -3,13 +3,11 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    'vue/setup-compiler-macros': true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/vue3-recommended',
-    '@vue/airbnb',
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', '@vue/airbnb'],
   rules: {
+    quotes: ['error', 'single'],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-nested-ternary': 0,
@@ -35,6 +33,6 @@ module.exports = {
     'function-paren-newline': 0,
     'react/no-typos': 0,
     'arrow-parens': 0,
-    'linebreak-style': 0
+    'linebreak-style': 0,
   },
 };

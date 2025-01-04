@@ -1,6 +1,6 @@
 <template>
   <span :class="type" class="logo">
-    <img :src="logo" alt="logo">
+    <img :src="logo" alt="logo" />
     {{ type !== 'only' ? brand.education.name : '' }}
   </span>
 </template>
@@ -10,7 +10,7 @@
 </style>
 
 <script>
-import logo from '@/assets/images/education-logo.svg';
+import logo from '@/assets/images/siakad-sekolah-logo.png';
 import brand from '@/assets/text/brand';
 
 export default {

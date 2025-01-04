@@ -1,13 +1,9 @@
 <template>
-  <footer class="footer" :class="{'has-bg': bg}">
+  <footer class="footer" :class="{ 'has-bg': bg }">
     <decoration :bg="bg" />
     <v-container class="fixed-width">
       <v-row class="spacing6">
-        <v-col
-          class="pa-6"
-          md="5"
-          cols="12"
-        >
+        <v-col class="pa-6" md="5" cols="12">
           <logo type="landscape" />
           <p class="footer-desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -17,10 +13,7 @@
               {{ $t('common.footer_link') }}
             </h6>
             <ul>
-              <li
-                v-for="(item, index) in footer.description"
-                :key="item"
-              >
+              <li v-for="(item, index) in footer.description" :key="item">
                 <nuxt-link :to="footer.link[index]">
                   {{ item }}
                 </nuxt-link>
@@ -28,11 +21,7 @@
             </ul>
           </div>
         </v-col>
-        <v-col
-          class="py-md-0 pa-6"
-          md="4"
-          cols="12"
-        >
+        <v-col class="py-md-0 pa-6" md="4" cols="12">
           <v-btn
             v-for="(item, index) in news"
             :key="index"
@@ -41,7 +30,7 @@
             href="#"
           >
             <span class="figure">
-              <img :src="item.img" alt="thumb">
+              <img :src="item.img" alt="thumb" />
             </span>
             <span class="list-text">
               <span class="category">
@@ -53,46 +42,22 @@
             </span>
           </v-btn>
         </v-col>
-        <v-col
-          md="3"
-          cols="12"
-          class="py-md-0 px-8 py-6"
-        >
+        <v-col md="3" cols="12" class="py-md-0 px-8 py-6">
           <div class="socmed">
-            <v-btn
-              variant="text"
-              icon
-              size="small"
-              class="button"
-            >
+            <v-btn variant="text" icon size="small" class="button">
               <span class="ion-logo-twitter icon" />
             </v-btn>
-            <v-btn
-              variant="text"
-              icon
-              size="small"
-              class="button"
-            >
+            <v-btn variant="text" icon size="small" class="button">
               <span class="ion-logo-facebook icon" />
             </v-btn>
-            <v-btn
-              variant="text"
-              icon
-              size="small"
-              class="button"
-            >
+            <v-btn variant="text" icon size="small" class="button">
               <span class="ion-logo-instagram icon" />
             </v-btn>
-            <v-btn
-              variant="text"
-              icon
-              size="small"
-              class="button"
-            >
+            <v-btn variant="text" icon size="small" class="button">
               <span class="ion-logo-linkedin icon" />
             </v-btn>
           </div>
-          <v-select
+          <!-- <v-select
             v-model="lang"
             :items="langList"
             :value="curLang"
@@ -101,7 +66,7 @@
             color="primary"
             prepend-inner-icon="mdi-web"
             @update:model-value="switchLang(lang)"
-          />
+          /> -->
           <p class="body-2">
             &copy;&nbsp;
             {{ brand.education.footerText }}
@@ -171,8 +136,15 @@ export default {
     brand,
     footer: {
       title: 'Quick Links',
-      description: ['Resource', 'Another resource', 'Final resource', 'Privacy policy', 'Terms of use', 'Terms Condition'], // eslint-disable-line
-      link: ['#', '#', '#', '#', '#', '#'] // eslint-disable-line
+      description: [
+        'Resource',
+        'Another resource',
+        'Final resource',
+        'Privacy policy',
+        'Terms of use',
+        'Terms Condition',
+      ], // eslint-disable-line
+      link: ['#', '#', '#', '#', '#', '#'], // eslint-disable-line
     },
     news: [
       {
@@ -198,7 +170,10 @@ export default {
       const i18n = this.$i18n.locales;
 
       i18n.map((locale) => {
-        list.push({ title: this.$t('common.' + locale.code), value: locale.code });
+        list.push({
+          title: this.$t('common.' + locale.code),
+          value: locale.code,
+        });
         return false;
       });
       return list;

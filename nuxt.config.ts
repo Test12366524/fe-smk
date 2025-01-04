@@ -61,7 +61,9 @@ export default defineNuxtConfig({
       ]
     },
   },
+
   components: false,
+
   css: [
     'aos/dist/aos.css',
     'vuetify/lib/styles/main.sass',
@@ -74,10 +76,12 @@ export default defineNuxtConfig({
     '@/assets/scss/vendors/slick-carousel/slick.css',
     '@/assets/scss/vendors/slick-carousel/slick-theme.css'
   ],
+
   modules: [
     '@nuxtjs/i18n',
     'vite-plugin-eslint'
   ],
+
   i18n: {
     locales: languages,
     lazy: true,
@@ -96,6 +100,7 @@ export default defineNuxtConfig({
       fallbackLocale: 'en',
     }
   },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -106,13 +111,19 @@ export default defineNuxtConfig({
       // eslintPlugin(),
     ]
   },
+
   build: {
     transpile: ['vuetify'],
     extend(config) {
       config.performance.hints = false
     },
   },
+
   devServer: {
     port: 8004
+  },
+
+  devtools: {
+    enabled: true
   }
 })

@@ -6,10 +6,7 @@
     temporary
     class="mobile-nav"
   >
-    <mobile-menu
-      :menu-primary="menuPrimary"
-      :menu-secondary="menuSecondary"
-    />
+    <mobile-menu :menu-primary="menuPrimary" :menu-secondary="menuSecondary" />
   </v-navigation-drawer>
   <v-app-bar
     v-scroll="handleScroll"
@@ -126,7 +123,8 @@ export default {
   },
   methods: {
     handleScroll() {
-      const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollPosition =
+        document.documentElement.scrollTop || document.body.scrollTop;
       const topPosition = scrollPosition + 100;
 
       Object.keys(this.sections).forEach((i) => {

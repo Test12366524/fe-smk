@@ -7,13 +7,21 @@ $wave-deco-dark: '/images/education/deco-wave-dark.png';
   margin-top: 300px;
   margin-bottom: $spacing10;
   @include breakpoints-down(xs) {
-    margin-top: 130px
+    margin-top: 130px;
   }
 }
 
 .form {
   position: relative;
-  margin-top: $spacing5
+  margin-top: $spacing5;
+}
+
+.action-button {
+  position: relative;
+  margin-top: $spacing2;
+  display: flex;
+  justify-content: center; // Centers the button horizontally
+  align-items: center; // Centers the button vertically if needed
 }
 
 .field {
@@ -29,21 +37,21 @@ $wave-deco-dark: '/images/education/deco-wave-dark.png';
     background: none;
   }
   :deep(.v-text-field__details) {
-    display: none
+    display: none;
   }
 }
 
-.button {
-  position: absolute;
-  @include right($spacing1);
-  top: 7px;
-  width: 140px;
-  @include breakpoints-down(sm) {
-    padding: spacing(0.5, 3);
-    min-width: 0;
-    width:auto;
-  }
-  @include breakpoints-down(xs) {
-    padding: spacing(0.5, 1)
-  }
-}
+// .button {
+//   position: absolute;
+//   @include right($spacing1);
+//   top: 7px;
+//   width: 140px;
+//   @include breakpoints-down(sm) {
+//     padding: spacing(0.5, 3);
+//     min-width: 0;
+//     width: auto;
+//   }
+//   @include breakpoints-down(xs) {
+//     padding: spacing(0.5, 1);
+//   }
+// }

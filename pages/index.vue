@@ -9,20 +9,17 @@
         <section id="feature" class="space-top">
           <feature />
         </section>
-        <section id="popular" class="space-top-short">
-          <popular-course />
-        </section>
-        <section id="explore">
-          <explore />
-        </section>
-        <section id="about" class="space-top-short">
+        <section id="about" class="space-top">
           <about />
+        </section>
+        <section id="blog" class="space-top">
+          <blog />
         </section>
         <section id="testimonials" class="space-top">
           <testimonials />
         </section>
-        <section id="blog" class="space-top">
-          <blog />
+        <section id="achivement" class="space-top">
+          <AchivementCard />
         </section>
       </div>
       <div class="bottom-deco-wrap">
@@ -35,9 +32,9 @@
       <hidden point="smDown">
         <corner />
       </hidden>
-      <hidden point="mdDown">
+      <!-- <hidden point="mdDown">
         <notification />
-      </hidden>
+      </hidden> -->
     </div>
   </div>
 </template>
@@ -63,11 +60,14 @@ import Footer from '@/components/Footer';
 import Hidden from '@/components/Hidden';
 import Corner from '@/components/Corner';
 import Notification from '@/components/Notification';
+
 import brand from '@/assets/text/brand';
 import { defineNuxtComponent, useRouter, useCookie } from '#app';
+import AchivementCard from '~/components/Home/AchivementCard.vue';
 
 export default defineNuxtComponent({
   components: {
+    AchivementCard,
     'main-header': Header,
     BannerSlider,
     Feature,
@@ -96,10 +96,12 @@ export default defineNuxtComponent({
 
     const defaultLocale = '/' + i18nLocale.fallbackLocale.value;
     onMounted(() => {
-      const rootUrl = document.location.pathname === '/' || document.location.pathname === defaultLocale;
-      if (storedLang.value && rootUrl) {
-        router.push({ path: `/${storedLang.value}` });
-      }
+      // const rootUrl =
+      //   document.location.pathname === '/' ||
+      //   document.location.pathname === defaultLocale;
+      // if (storedLang.value && rootUrl) {
+      //   router.push({ path: `/${storedLang.value}` });
+      // }
     });
   },
   computed: {

@@ -1,12 +1,9 @@
 <template>
-  <footer class="footer" :class="{'has-bg': bg}">
+  <footer class="footer" :class="{ 'has-bg': bg }">
     <decoration :bg="bg" />
     <v-container>
       <v-row>
-        <v-col
-          md="3"
-          cols="12"
-        >
+        <v-col md="3" cols="12">
           <div class="logo-area">
             <logo type="landscape" />
             <p class="text-body-2">
@@ -18,11 +15,7 @@
             {{ brand.education.footerText }}
           </p>
         </v-col>
-        <v-col
-          class="pa-4"
-          md="6"
-          cols="12"
-        >
+        <v-col class="pa-4" md="6" cols="12">
           <v-expansion-panels v-if="isMobile" class="accordion-root">
             <v-expansion-panel
               v-for="(footer, index) in footers"
@@ -31,7 +24,7 @@
             >
               <v-expansion-panel-title>
                 <h6 class="use-text-subtitle2 text-capitalize mb-4">
-                  {{ $t('common.footer_'+footer.title) }}
+                  {{ $t('common.footer_' + footer.title) }}
                 </h6>
               </v-expansion-panel-title>
               <v-expansion-panel-text>
@@ -49,23 +42,17 @@
               </v-expansion-panel-text>
             </v-expansion-panel>
           </v-expansion-panels>
-          <v-row
-            v-if="isDesktop"
-            justify="space-around"
-          >
+          <v-row v-if="isDesktop" justify="space-around">
             <v-col
               v-for="(footer, index) in footers"
               :key="index"
               class="pa-4 site-map-item"
             >
               <h6 class="title text-capitalize mb-4">
-                {{ $t('common.footer_'+footer.title) }}
+                {{ $t('common.footer_' + footer.title) }}
               </h6>
               <ul>
-                <li
-                  v-for="(item, index) in footer.description"
-                  :key="index"
-                >
+                <li v-for="(item, index) in footer.description" :key="index">
                   <nuxt-link :to="footer.link[index]">
                     {{ item }}
                   </nuxt-link>
@@ -74,46 +61,22 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col
-          md="3"
-          cols="12"
-          class="pa-4"
-        >
+        <v-col md="3" cols="12" class="pa-4">
           <div class="socmed">
-            <v-btn
-              size="small"
-              variant="text"
-              icon
-              class="button"
-            >
+            <v-btn size="small" variant="text" icon class="button">
               <span class="ion-logo-facebook icon" />
             </v-btn>
-            <v-btn
-              size="small"
-              variant="text"
-              icon
-              class="button"
-            >
+            <v-btn size="small" variant="text" icon class="button">
               <span class="ion-logo-twitter icon" />
             </v-btn>
-            <v-btn
-              size="small"
-              variant="text"
-              icon
-              class="button"
-            >
+            <v-btn size="small" variant="text" icon class="button">
               <span class="ion-logo-instagram icon" />
             </v-btn>
-            <v-btn
-              size="small"
-              variant="text"
-              icon
-              class="button"
-            >
+            <v-btn size="small" variant="text" icon class="button">
               <span class="ion-logo-linkedin icon" />
             </v-btn>
           </div>
-          <v-select
+          <!-- <v-select
             v-model="lang"
             :items="langList"
             :value="curLang"
@@ -122,7 +85,7 @@
             color="primary"
             prepend-inner-icon="mdi-web"
             @update:model-value="switchLang(lang)"
-          />
+          /> -->
           <p v-if="isMobile" class="body-2 text-center">
             &copy;&nbsp;
             {{ brand.education.footerText }}
@@ -218,7 +181,10 @@ export default {
       const i18n = this.$i18n.locales;
 
       i18n.map((locale) => {
-        list.push({ title: this.$t('common.' + locale.code), value: locale.code });
+        list.push({
+          title: this.$t('common.' + locale.code),
+          value: locale.code,
+        });
         return false;
       });
       return list;
