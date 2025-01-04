@@ -1,5 +1,5 @@
 const single = [
-  'profile',
+  'profil',
   'berita',
   'prestasi',
   'alumni',

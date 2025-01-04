@@ -8,17 +8,17 @@
     >
       <div>
         <v-list-item-title class="menu-list">
-          {{ $t('education.header_'+item.name) }}
+          {{ item.name }}
         </v-list-item-title>
       </div>
     </v-list-item>
-    <v-list-item href="/sample-pages" link>
+    <!-- <v-list-item href="/sample-pages" link>
       <div>
         <v-list-item-title class="menu-list">
           {{ $t('common.header_sample_page') }}
         </v-list-item-title>
       </div>
-    </v-list-item>
+    </v-list-item> -->
   </v-list>
   <v-divider />
   <v-list dense>
@@ -30,7 +30,7 @@
     >
       <div>
         <v-list-item-title class="menu-list">
-          {{ $t('common.header_'+item) }}
+          {{ $t('common.header_' + item) }}
         </v-list-item-title>
       </div>
     </v-list-item>

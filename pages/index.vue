@@ -62,7 +62,7 @@ import Corner from '@/components/Corner';
 import Notification from '@/components/Notification';
 
 import brand from '@/assets/text/brand';
-import { defineNuxtComponent, useRouter, useCookie } from '#app';
+import { defineNuxtComponent } from '#app';
 import AchivementCard from '~/components/Home/AchivementCard.vue';
 
 export default defineNuxtComponent({
@@ -87,22 +87,6 @@ export default defineNuxtComponent({
     return {
       title: brand.education.desc,
     };
-  },
-  setup() {
-    // push route to the stored cookie languages only for index page
-    const router = useRouter();
-    const storedLang = useCookie('i18n_redirected');
-    const i18nLocale = useI18n();
-
-    const defaultLocale = '/' + i18nLocale.fallbackLocale.value;
-    onMounted(() => {
-      // const rootUrl =
-      //   document.location.pathname === '/' ||
-      //   document.location.pathname === defaultLocale;
-      // if (storedLang.value && rootUrl) {
-      //   router.push({ path: `/${storedLang.value}` });
-      // }
-    });
   },
   computed: {
     isTablet() {

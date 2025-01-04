@@ -7,9 +7,8 @@
         :href="item.link"
         :class="{ active: activeMenu === item.name }"
         class="menu-link"
-        @click="scrollToMyEl(item.name)"
       >
-        <span>{{ $t('education.header_'+item.name) }}</span>
+        <span>{{ item.name }}</span>
       </v-btn>
     </template>
     <template v-if="!singleNav">
@@ -18,7 +17,7 @@
         :key="index"
         :href="'/' + item.link"
       >
-        <span>{{ $t('education.header_'+item.name) }}</span>
+        <span>{{ item.name }}</span>
       </v-btn>
     </template>
     <v-btn href="/sample-pages" variant="text">

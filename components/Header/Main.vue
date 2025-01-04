@@ -29,8 +29,4 @@ const props = defineProps({
 });
 
 const type = ref(ui.header());
-
-watch(ui.header, (newValue) => {
-  console.log('Header type changed to:', newValue);
-});
 </script>

@@ -8,7 +8,7 @@
         :class="{ active: activeMenu === item.name }"
       >
         <span>{{ item.name }}</span>
-      </v-btn> 
+      </v-btn>
       <!-- <v-btn
         key="1"
         href="/profile"

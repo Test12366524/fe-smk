@@ -4,27 +4,24 @@
       v-for="(item, index) in menuPrimary"
       :key="index"
       :href="item.link"
-      :class="{ current: curURL === (curOrigin+langPath+item.link)}"
+      :class="{ current: curURL === curOrigin + langPath + item.link }"
       link
     >
       <div>
         <v-list-item-title class="menu-list">
-          {{ $t('education.header_'+item.name) }}
+          {{ item.name }}
         </v-list-item-title>
       </div>
     </v-list-item>
-    <v-list-group class="group-child">
-      <template #activator="{props}">
+    <!-- <v-list-group class="group-child">
+      <template #activator="{ props }">
         <v-list-item v-bind="props">
           <v-list-item-title class="menu-list">
             {{ $t('common.header_sample_page') }}
           </v-list-item-title>
         </v-list-item>
       </template>
-      <v-list
-        v-for="(subitem, index) in menuSecondary"
-        :key="index"
-      >
+      <v-list v-for="(subitem, index) in menuSecondary" :key="index">
         <v-list-subheader class="title-mega">
           {{ subitem.name }}
         </v-list-subheader>
@@ -33,28 +30,31 @@
             v-for="(item, index) in subitem.child"
             :key="index"
             :href="item.link"
-            :class="{ current: curURL === (curOrigin+langPath+item.link)}"
+            :class="{ current: curURL === curOrigin + langPath + item.link }"
           >
             <div>
-              <v-list-item-title class="menu-list" v-text="$t('common.header_'+item.name)" />
+              <v-list-item-title
+                class="menu-list"
+                v-text="$t('common.header_' + item.name)"
+              />
             </div>
           </v-list-item>
         </div>
       </v-list>
-    </v-list-group>
+    </v-list-group> -->
   </v-list>
   <v-divider />
   <v-list dense>
     <v-list-item
-      v-for="(item, index) in ['login', 'register']"
+      v-for="(item, index) in ['PPDB']"
       :key="index"
       :href="'/' + item"
-      :class="{ current: curURL === (curOrigin+langPath+item)}"
+      :class="{ current: curURL === curOrigin + langPath + item }"
       link
     >
       <div>
         <v-list-item-title class="menu-list">
-          {{ $t('common.header_'+item) }}
+          {{ item }}
         </v-list-item-title>
       </div>
     </v-list-item>
