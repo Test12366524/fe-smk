@@ -18,7 +18,7 @@
         :key="index"
         :href="'/' + item.link"
       >
-        <span>{{ $t('education.header_' + item.name) }}</span>
+        <span>{{ item.name }}</span>
       </v-btn>
     </template>
     <v-menu
