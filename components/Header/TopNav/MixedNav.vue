@@ -4,13 +4,59 @@
       <v-btn
         v-for="(item, index) in menuPrimary"
         :key="index"
-        :href="item.link"
+        :href="'/' + item.link"
         :class="{ active: activeMenu === item.name }"
-        class="menu-link"
-        variant="text"
       >
         <span>{{ item.name }}</span>
+      </v-btn> 
+      <!-- <v-btn
+        key="1"
+        href="/profile"
+        :class="{ active: activeMenu === 'profile' }"
+        class="menu-link"
+      >
+        <span>Profile</span>
       </v-btn>
+      <v-btn
+        key="2"
+        href="/berita"
+        :class="{ active: activeMenu === 'berita' }"
+        class="menu-link"
+      >
+        <span>Berita</span>
+      </v-btn>
+      <v-btn
+        key="3"
+        href="/prestasi"
+        :class="{ active: activeMenu === 'prestasi' }"
+        class="menu-link"
+      >
+        <span>Prestasi</span>
+      </v-btn>
+      <v-btn
+        key="4"
+        href="/ppdb"
+        :class="{ active: activeMenu === 'ppdb' }"
+        class="menu-link"
+      >
+        <span>PPDB</span>
+      </v-btn>
+      <v-btn
+        key="5"
+        href="/alumni"
+        :class="{ active: activeMenu === 'alumni' }"
+        class="menu-link"
+      >
+        <span>Alumni</span>
+      </v-btn>
+      <v-btn
+        key="6"
+        href="/agenda"
+        :class="{ active: activeMenu === 'agenda' }"
+        class="menu-link"
+      >
+        <span>Agenda</span>
+      </v-btn> -->
     </template>
     <template v-if="!singleNav">
       <v-btn
@@ -21,63 +67,6 @@
         <span>{{ $t('education.header_' + item.name) }}</span>
       </v-btn>
     </template>
-    <v-menu
-      :open-on-hover="hover"
-      :position-x="0"
-      max-height="480"
-      offset-y
-      content-class="mega-menu-root"
-      width="100%"
-      transition="slide-y-transition"
-      nudge-left
-      nudge-width
-    >
-      <template #activator="{ props }">
-        <span class="button-item" v-bind="props">
-          <v-btn text>
-            <span>
-              {{ $t('common.header_sample_page') }}
-            </span>
-            <v-icon right> mdi-chevron-down </v-icon>
-          </v-btn>
-        </span>
-      </template>
-      <div class="mega-menu">
-        <v-container class="max-md">
-          <v-row>
-            <v-col
-              v-for="(subitem, index) in menuSecondary"
-              :key="index"
-              sm="3"
-            >
-              <v-list>
-                <v-list-subheader class="title-mega">
-                  {{ subitem.name }}
-                </v-list-subheader>
-                <img :src="subitem.thumb" alt="thumbnail" class="thumb-menu" />
-                <div>
-                  <v-list-item
-                    v-for="(item, index) in subitem.child"
-                    :key="index"
-                    :href="item.link"
-                    :class="{
-                      current: curURL === curOrigin + langPath + item.link,
-                    }"
-                  >
-                    <div>
-                      <v-list-item-title
-                        class="menu-list"
-                        v-text="$t('common.header_' + item.name)"
-                      />
-                    </div>
-                  </v-list-item>
-                </div>
-              </v-list>
-            </v-col>
-          </v-row>
-        </v-container>
-      </div>
-    </v-menu>
   </div>
 </template>
 

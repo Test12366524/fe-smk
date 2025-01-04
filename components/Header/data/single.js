@@ -2,7 +2,6 @@ const single = [
   'profile',
   'berita',
   'prestasi',
-  'ppdb',
   'alumni',
   'agenda',
   'info',

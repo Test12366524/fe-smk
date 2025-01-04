@@ -2,18 +2,11 @@
   <nav class="user-menu">
     <v-btn
       v-if="isDesktop"
-      :href="link.education.login"
-      variant="text"
-    >
-      {{ $t('common.login') }}
-    </v-btn>
-    <v-btn
-      v-if="isDesktop"
-      :href="link.education.register"
+      href="/ppdb"
       color="primary"
       variant="flat"
     >
-      {{ $t('common.register') }}
+      PPDB
     </v-btn>
     <v-spacer
       v-if="isDesktop"
