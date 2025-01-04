@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="isDesktop"
-    class="scrollactive-nav"
-  >
+  <div v-if="isDesktop" class="scrollactive-nav">
     <template v-if="singleNav">
       <v-btn
         v-for="(item, index) in menuPrimary"
@@ -11,9 +8,8 @@
         :class="{ active: activeMenu === item.name }"
         class="menu-link"
         variant="text"
-        @click="scrollToMyEl(item.name)"
       >
-        <span>{{ $t('education.header_'+item.name) }}</span>
+        <span>{{ item.name }}</span>
       </v-btn>
     </template>
     <template v-if="!singleNav">
@@ -22,7 +18,7 @@
         :key="index"
         :href="'/' + item.link"
       >
-        <span>{{ $t('education.header_'+item.name) }}</span>
+        <span>{{ $t('education.header_' + item.name) }}</span>
       </v-btn>
     </template>
     <v-menu
@@ -37,17 +33,12 @@
       nudge-width
     >
       <template #activator="{ props }">
-        <span
-          class="button-item"
-          v-bind="props"
-        >
+        <span class="button-item" v-bind="props">
           <v-btn text>
             <span>
               {{ $t('common.header_sample_page') }}
             </span>
-            <v-icon right>
-              mdi-chevron-down
-            </v-icon>
+            <v-icon right> mdi-chevron-down </v-icon>
           </v-btn>
         </span>
       </template>
@@ -63,16 +54,21 @@
                 <v-list-subheader class="title-mega">
                   {{ subitem.name }}
                 </v-list-subheader>
-                <img :src="subitem.thumb" alt="thumbnail" class="thumb-menu">
+                <img :src="subitem.thumb" alt="thumbnail" class="thumb-menu" />
                 <div>
                   <v-list-item
                     v-for="(item, index) in subitem.child"
                     :key="index"
                     :href="item.link"
-                    :class="{ current: curURL === (curOrigin+langPath+item.link)}"
+                    :class="{
+                      current: curURL === curOrigin + langPath + item.link,
+                    }"
                   >
                     <div>
-                      <v-list-item-title class="menu-list" v-text="$t('common.header_'+item.name)" />
+                      <v-list-item-title
+                        class="menu-list"
+                        v-text="$t('common.header_' + item.name)"
+                      />
                     </div>
                   </v-list-item>
                 </div>
