@@ -5,10 +5,10 @@
       <v-container class="mt-10 mt-sm-0">
         <v-row>
           <v-col md="8" cols="12">
-            <article-blog />
+            <profile-article />
           </v-col>
           <v-col md="4" cols="12">
-            <sidebar />
+            <sidebar @handleSelectMenu="handleSelectMenu" />
           </v-col>
         </v-row>
       </v-container>
@@ -23,25 +23,22 @@
 @import '@/assets/scss/pages';
 </style>
 
-<script>
+<script setup>
 import brand from '@/assets/text/brand';
-import Header from '@/components/Header';
-import Article from '@/components/Blog/Article';
-import Sidebar from '@/components/Blog/Sidebar';
-import Footer from '@/components/Footer';
-import { defineNuxtComponent } from '#app';
+import MainHeader from '@/components/Header';
+import ProfileArticle from '@/components/Profil/Article';
+import Sidebar from '@/components/Profil/Sidebar';
+import MainFooter from '@/components/Footer';
 
-export default defineNuxtComponent({
-  components: {
-    'main-header': Header,
-    'main-footer': Footer,
-    Sidebar,
-    'article-blog': Article,
-  },
-  head() {
-    return {
-      title: 'Blog Detail | ' + brand.education.desc,
-    };
-  },
+const selectedMenu = ref('');
+
+const handleSelectMenu = (menu) => {
+  selectedMenu.value = menu;
+  console.log('PARENT', menu);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+useHead({
+  title: `Profil | ${brand.education.descSecondary}`,
 });
 </script>

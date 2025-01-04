@@ -2,6 +2,7 @@ const brand = {
   education: {
     name: 'SiAkad Sekolah',
     desc: 'SiAKad Sekolah | Selamat Datang Di Official Web SiAkad Sekolah',
+    descSecondary: ' | Selamat Datang Di Official Web SiAkad Sekolah',
     prefix: 'awrora',
     footerText: 'Awrora Theme 2022',
     logoText: 'SiAkad Sekolah',
