@@ -1,8 +1,5 @@
 <template>
-  <v-card
-    :class="[orientation, type]"
-    class="media-card"
-  >
+  <v-card :class="[orientation, type]" class="media-card">
     <v-badge
       v-if="type === 'video'"
       :content="duration"
@@ -19,7 +16,7 @@
       &nbsp;
     </a>
     <figure>
-      <img :src="thumb" alt="cover">
+      <img :src="thumb" alt="cover" />
     </figure>
     <div class="property">
       <v-btn
@@ -30,9 +27,7 @@
       >
         <span class="ion-ios-play" />
       </v-btn>
-      <v-card-title class="media-title">
-        {{ title }}
-      </v-card-title>
+      <v-card-title class="media-title"> {{ title }} </v-card-title>
     </div>
   </v-card>
 </template>

@@ -31,13 +31,40 @@
 import brand from '@/assets/text/brand';
 import MainHeader from '@/components/Header';
 import MainFooter from '@/components/Footer';
-import PostCard from '~/components/Cards/PostCard.vue';
 import imgAPI from '~/assets/images/imgAPI';
 import Title from '~/components/Title/Title.vue';
-import NewsCard from '~/components/Cards/NewsCard.vue';
 import MediaCard from '~/components/Cards/MediaCard.vue';
 
 useHead({
-  title: `Agenda | ${brand.education.descSecondary}`,
+  title: `Galeri | ${brand.education.descSecondary}`,
+});
+
+const { fetchData } = useApi();
+const contentList = ref([]);
+const params = reactive({
+  page: 1,
+  limit: 10,
+});
+
+const pagination = ref({
+  currentPage: 1,
+  pageTotal: 0,
+  total: 0,
+});
+
+const baseUrl = '/gallery';
+
+const getList = async (params) => {
+  const { data } = await fetchData(baseUrl, params);
+  if (data) contentList.value = data.data.items;
+  const cloneData = { ...data.data };
+  delete cloneData.items;
+  cloneData.currentPage = Number(cloneData.currentPage);
+  pagination.value = cloneData;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+onMounted(() => {
+  getList(params);
 });
 </script>

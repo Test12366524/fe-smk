@@ -8,7 +8,7 @@
       <v-img :src="img" class="white--text" height="200px" cover />
     </div>
     <div :class="startPadding" class="properties">
-      <v-card-subtitle class="head-line">
+      <v-card-subtitle class="head-line" v-if="headline">
         {{ headline }}
       </v-card-subtitle>
       <v-card-subtitle v-if="date"> {{ date }} </v-card-subtitle>
@@ -20,7 +20,7 @@
         <v-btn
           :size="orientation === 'landscape' ? 'small' : 'regular'"
           variant="text"
-          class="action-btn"
+          class="action-btn pl-3"
           color="primary"
           @click="handleNavigateTo"
         >
