@@ -4,7 +4,7 @@
       v-for="(item, index) in menuPrimary"
       :key="index"
       :href="item.link"
-      :class="{ current: curURL === curOrigin + langPath + item.link }"
+      :class="{ active: getActiveMenu === item.name }"
       link
     >
       <div>
@@ -49,7 +49,7 @@
       v-for="(item, index) in ['PPDB']"
       :key="index"
       :href="'/' + item"
-      :class="{ current: curURL === curOrigin + langPath + item }"
+      :class="{ active: getActiveMenu === item.name }"
       link
     >
       <div>
@@ -63,6 +63,11 @@
 
 <style scoped lang="scss">
 @import '../sidenav-style';
+
+.active {
+  background-color: #e0e0e0;
+  color: black;
+}
 </style>
 
 <script>
@@ -85,10 +90,17 @@ export default {
       langPath: '',
     };
   },
+  computed: {
+    getActiveMenu() {
+      const route = useRoute();
+      const path = route.path.substring(4, route.path.length);
+      return path;
+    },
+  },
   mounted() {
-    this.curURL = window.location.href;
-    this.curOrigin = window.location.origin;
-    this.langPath = '/' + this.$i18n.locale;
+    // this.curURL = window.location.href;
+    // this.curOrigin = window.location.origin;
+    // this.langPath = '/' + this.$i18n.locale;
   },
 };
 </script>

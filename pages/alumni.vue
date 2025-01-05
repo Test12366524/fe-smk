@@ -6,25 +6,22 @@
       class="space-bottom-short text-center text-md-start"
     >
       <v-container>
-        <alumni-title
-          head="Alumni"
-          desc="Vestibulum faucibus eget erat eget pretium. Donec commodo convallis
-          eget suscipit orci. Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit."
-          align="center"
-          color="primary"
+        <alumni-title head="Alumni" align="center" color="primary" />
+        <team-grid :list="alumniList" />
+        <PaginationComponent
+          v-if="alumniList.length > 0"
+          :totalItems="pagination.total"
+          :currentPage="pagination.currentPage"
+          @onPageChange="
+            (page) => {
+              params.page = page;
+              getList(params);
+            }
+          "
         />
-        <team-grid />
       </v-container>
     </div>
-    <div class="space-bottom-short">
-      <photo-slider />
-    </div>
     <div class="bottom-deco-wrap">
-      <section id="subscribe">
-        <deco-footer />
-        <subscribe-form />
-      </section>
       <main-footer />
     </div>
   </div>
@@ -34,41 +31,46 @@
 @import '@/assets/scss/pages';
 </style>
 
-<script>
+<script setup>
 import brand from '@/assets/text/brand';
-import imgAPI from '@/assets/images/imgAPI';
-import Header from '@/components/Header';
-import Banner from '@/components/About/Banner';
-import Counter from '@/components/Counter';
-import PhotoSlider from '@/components/About/PhotoSlider';
-import DecoFooter from '@/components/Footer/DecorationTop';
-import TeamGrid from '@/components/About/TeamGrid';
-import SubscribeForm from '@/components/SubscribeForm';
-import Footer from '@/components/Footer';
-import { defineNuxtComponent } from '#app';
-import Title from '@/components/Title/Title';
+import MainHeader from '@/components/Header';
+import TeamGrid from '@/components/Alumni/TeamGrid';
+import MainFooter from '@/components/Footer';
+import AlumniTitle from '@/components/Title/Title';
+import PaginationComponent from '~/components/PaginationComponent.vue';
 
-export default defineNuxtComponent({
-  components: {
-    'main-header': Header,
-    'main-footer': Footer,
-    TeamGrid,
-    Banner,
-    Counter,
-    SubscribeForm,
-    DecoFooter,
-    PhotoSlider,
-    'alumni-title': Title,
-  },
-  data() {
-    return {
-      imgAPI,
-    };
-  },
-  head() {
-    return {
-      title: 'Alumni | ' + brand.education.desc,
-    };
-  },
+const { fetchData } = useApi();
+
+const alumniList = ref([]);
+const params = reactive({
+  page: 1,
+  limit: 10,
+});
+
+const pagination = ref({
+  currentPage: 1,
+  pageTotal: 0,
+  total: 0,
+});
+
+const baseUrl = '/siswa/alumni';
+
+const getList = async (params) => {
+  const { data } = await fetchData(baseUrl, params);
+  if (data) alumniList.value = data.data.items;
+  const cloneData = { ...data.data };
+  delete cloneData.items;
+  cloneData.currentPage = Number(cloneData.currentPage);
+  pagination.value = cloneData;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// Set the page title
+useHead({
+  title: 'Alumni | ' + brand.education.desc,
+});
+
+onMounted(() => {
+  getList(params);
 });
 </script>

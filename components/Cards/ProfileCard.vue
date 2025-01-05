@@ -1,23 +1,10 @@
 <template>
-  <v-card
-    :class="[orientation, type]"
-    class="profile-card"
-  >
+  <v-card :class="[orientation, type]" class="profile-card">
     <div class="figure">
-      <v-img
-        :src="cover"
-        height="200px"
-        cover
-      />
+      <v-img :src="cover" height="200px" cover />
     </div>
-    <v-avatar
-      :size="orientation === 'portrait' ? 92 : '60'"
-      class="avatar"
-    >
-      <img
-        :src="avatar"
-        alt="avatar"
-      >
+    <v-avatar :size="orientation === 'portrait' ? 92 : '60'" class="avatar">
+      <img :src="avatar" alt="avatar" />
     </v-avatar>
     <div class="properties text-truncate">
       <div>
@@ -30,54 +17,8 @@
           {{ title }}
         </v-card-subtitle>
         <v-card-text class="desc">
-          <span class="text--primary">
-            <span>{{ connection }} Connection</span>
-          </span>
+          <span>{{ company }}</span>
         </v-card-text>
-        <v-btn
-          v-if="orientation === 'portrait'"
-          :href="href"
-          variant="outlined"
-          class="main-btn"
-          color="primary"
-        >
-          See Profile
-        </v-btn>
-      </div>
-      <div class="action-area">
-        <v-card-actions class="action">
-          <v-btn text>
-            <v-icon class="icon">
-              mdi-account-multiple
-            </v-icon>
-            {{ connection }}
-            Connection
-          </v-btn>
-          <v-btn text>
-            <v-icon class="icon">
-              mdi-heart
-            </v-icon>
-            {{ favorites }}
-            Favorites
-          </v-btn>
-          <v-btn text>
-            <v-icon class="icon">
-              mdi-folder-multiple-image
-            </v-icon>
-            {{ albums }}
-            Albums
-          </v-btn>
-        </v-card-actions>
-        <v-btn
-          v-if="orientation === 'landscape'"
-          :href="href"
-          variant="outlined"
-          class="main-btn"
-          color="primary"
-          size="small"
-        >
-          See Profile
-        </v-btn>
       </div>
     </div>
   </v-card>
@@ -107,6 +48,14 @@ export default {
     title: {
       type: String,
       required: true,
+    },
+    company: {
+      type: String,
+      default: '',
+    },
+    address: {
+      type: String,
+      default: '',
     },
     connection: {
       type: Number,

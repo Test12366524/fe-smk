@@ -87,16 +87,15 @@ export default {
     },
   },
   mounted() {
-    this.curURL = window.location.href;
-    this.curOrigin = window.location.origin;
-    this.langPath = '/' + this.$i18n.locale;
-    console.log('active', this.getActiveMenu);
-    const id = window.location.hash;
-    const content = id.replace('#', '');
-    const element = document.getElementById(content);
-    if (element) {
-      element.scrollIntoView();
-    }
+    // this.curURL = window.location.href;
+    // this.curOrigin = window.location.origin;
+    // this.langPath = '/' + this.$i18n.locale;
+    // const id = window.location.hash;
+    // const content = id.replace('#', '');
+    // const element = document.getElementById(content);
+    // if (element) {
+    //   element.scrollIntoView();
+    // }
   },
 };
 </script>

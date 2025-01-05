@@ -3,14 +3,7 @@
     <main-header />
     <div class="container-general">
       <v-container class="mt-10 mt-sm-0">
-        <Title
-          head="Prestasi"
-          desc="Vestibulum faucibus eget erat eget pretium. Donec commodo convallis
-          eget suscipit orci. Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit."
-          align="center"
-          color="primary"
-        />
+        <Title head="Prestasi" align="center" color="primary" />
         <v-row>
           <v-col v-for="index in 10" :key="index" sm="4" cols="12">
             <PostCard
