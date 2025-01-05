@@ -10,15 +10,15 @@
       <div>
         <v-list lines="one">
           <v-list-item
-            v-for="(item, index) in menus"
+            v-for="(item, index) in getCategories"
             :key="index"
-            :class="{ active: toKebabCase(item.title) === selectedMenu }"
+            :class="{ active: toKebabCase(item.text) === getCategoryFromQuery }"
           >
             <div
               style="cursor: pointer"
-              @click="() => handleSelectMenu(toKebabCase(item.title))"
+              @click="handleSelectCategory(toKebabCase(item.text))"
             >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
             </div>
           </v-list-item>
         </v-list>
@@ -28,55 +28,23 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
 const route = useRoute();
 const router = useRouter();
 
-const menus = ref([
-  {
-    title: 'Sejarah Singkat',
+const props = defineProps({
+  categories: {
+    type: Array,
+    required: true,
+    default: () => [],
   },
-  {
-    title: 'Visi Misi',
-  },
-  {
-    title: 'Sarana Prasarana',
-  },
-  {
-    title: 'Kepala Madrasah',
-  },
-  {
-    title: 'Struktur Kepengurusan',
-  },
-  {
-    title: 'Pendidik',
-  },
-  {
-    title: 'Tenaga Kependidikan',
-  },
-  {
-    title: 'Peserat Didik',
-  },
-]);
-
-const emit = defineEmits(['handleSelectMenu']);
-const getQuery = computed(() => route.query.menu);
-
-const selectedMenu = ref('');
-const handleSelectMenu = (menu) => {
-  selectedMenu.value = menu;
-  emit('handleSelectMenu', menu);
-  router.push(`${route.path}?menu=${menu}`);
-};
-
-onMounted(() => {
-  if (getQuery.value) {
-    selectedMenu.value = getQuery.value;
-  } else {
-    selectedMenu.value = toKebabCase(menus.value[0].title);
-  }
 });
+
+const getCategories = computed(() => props.categories);
+const getCategoryFromQuery = computed(() => route.query.category);
+
+const handleSelectCategory = (category) => {
+  router.push(`${route.path}?category=${category}`);
+};
 </script>
 
 <style scoped>

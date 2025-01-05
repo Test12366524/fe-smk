@@ -3,7 +3,7 @@
     id="preloader"
     style="
       position: absolute;
-      zIndex: 10000;
+      z-index: 10000;
       background: #fafafa;
       width: 100%;
       height: 100%;
@@ -18,7 +18,7 @@
       "
       src="/images/loading.gif"
       alt="loading"
-    >
+    />
   </div>
   <theme-wrapper theme="smart">
     <v-progress-linear
@@ -30,7 +30,11 @@
       class="top-loading"
     />
     <v-app>
-      <v-main id="main-wrap" class="page-enter-active" :class="{ 'page-fade-transition-exit': loading >= 100 }">
+      <v-main
+        id="main-wrap"
+        class="page-enter-active"
+        :class="{ 'page-fade-transition-exit': loading >= 100 }"
+      >
         <slot />
       </v-main>
     </v-app>
@@ -43,43 +47,35 @@
 }
 </style>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
 import ThemeWrapper from '@/components/ThemeWrapper';
 
-export default {
-  components: {
-    ThemeWrapper,
-  },
-  data() {
-    return {
-      loading: 0,
-      interval: 0,
-      bufferValue: 10,
-    };
-  },
-  mounted() {
-    // Preloader and Progress bar setup
-    this.startBuffer();
-    setTimeout(() => {
-      this.loading = 100;
-      clearInterval(this.interval);
-    }, 500);
+const loading = ref(0);
+const interval = ref(0);
+const bufferValue = ref(10);
 
-    // Remove Loading Screen
-    const preloader = document.getElementById('preloader');
-    if (preloader !== null || undefined) {
-      preloader.remove();
-    }
-  },
-  methods: {
-    startBuffer() {
-      clearInterval(this.interval);
+const startBuffer = () => {
+  clearInterval(interval.value);
 
-      this.interval = setInterval(() => {
-        this.loading += Math.random() * (15 - 5) + 5;
-        this.bufferValue += Math.random() * (15 - 5) + 6;
-      }, 100);
-    },
-  },
+  interval.value = setInterval(() => {
+    loading.value += Math.random() * (15 - 5) + 5;
+    bufferValue.value += Math.random() * (15 - 5) + 6;
+  }, 100);
 };
+
+onMounted(() => {
+  // Preloader and Progress bar setup
+  startBuffer();
+  setTimeout(() => {
+    loading.value = 100;
+    clearInterval(interval.value);
+  }, 500);
+
+  // Remove Loading Screen
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    preloader.remove();
+  }
+});
 </script>

@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import eslintPlugin from 'vite-plugin-eslint';
 import languages from './lang/languages';
 import theme from './config/theme';
 import brand from './assets/text/brand';
@@ -142,8 +141,12 @@ export default defineNuxtConfig({
     '@/assets/scss/vendors/slick-carousel/slick-theme.css',
   ],
 
-  modules: ['@nuxtjs/i18n', 'vite-plugin-eslint'],
-
+  modules: ['@nuxtjs/i18n', 'vite-plugin-eslint', '@pinia/nuxt'],
+  runtimeConfig: {
+    public: {
+      apiBaseURL: process.env.NUXT_PUBLIC_API_BASE_URL,
+    },
+  },
   i18n: {
     locales: languages,
     lazy: true,

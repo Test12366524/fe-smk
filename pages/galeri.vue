@@ -5,18 +5,7 @@
       <v-container class="mt-10 mt-sm-0">
         <Title head="Galeri" align="center" color="primary" />
         <v-row>
-          <v-col v-for="index in 3" :key="index" sm="4" cols="12">
-            <MediaCard
-              :thumb="imgAPI.photo[9]"
-              title="Sed lacinia velit, ut malesuada eros interdum a"
-              orientation="portrait"
-              type="video"
-              href="#"
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col v-for="index in 3" :key="index" sm="4" cols="12">
+          <v-col v-for="index in 9" :key="index" sm="4" cols="12">
             <MediaCard
               :thumb="imgAPI.photo[10]"
               title="Sed lacinia velit, ut malesuada eros interdum a"
