@@ -25,6 +25,7 @@
     "@mdi/font": "^7.0.96",
     "@splidejs/vue-splide": "^0.6.12",
     "axios": "^1.7.9",
+    "remixicon": "^4.6.0",
     "rtl-sass": "^1.5.0",
     "vite-plugin-vuetify": "^1.0.2",
     "vue-countup-v3": "^1.1.0",

@@ -7,14 +7,14 @@
       <v-col md="12">
         <template v-for="(item, index) in articleList" :key="index + item.id">
           <div class="mb-8">
-            <post-card
-              :img="imgAPI.photo[32]"
+            <NewsCard
+              :img="item.cover ? getFileUrl(item.cover) : imgAPI.photo[37]"
               :title="item.title"
-              :desc="item.subtitle"
-              date="12 Nov 2020"
+              :headline="item.category_name"
               orientation="landscape"
               type="round"
               href="/blog/detail-blog"
+              :date="formatFullDate(item.created_at).dateOnly"
             />
           </div>
         </template>
@@ -32,7 +32,8 @@
 import { computed } from 'vue';
 import imgAPI from '@/assets/images/imgAPI';
 import PostCard from '@/components/Cards/PostCard';
-import { kebabToNormalText } from '~/utils/helper';
+import NewsCard from '~/components/Cards/NewsCard.vue';
+import { formatFullDate, kebabToNormalText } from '~/utils/helper';
 
 const props = defineProps({
   articles: {

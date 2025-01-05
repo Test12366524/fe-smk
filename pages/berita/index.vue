@@ -4,13 +4,24 @@
     <div class="container-general">
       <v-container class="mt-10 mt-sm-0">
         <v-row>
-          <v-col md="8" cols="12">
-            <NewsSections :articles="articleList" />
-          </v-col>
-          <v-col md="4" cols="12">
+          <v-col md="4" cols="12" order-md="2" order="1">
             <sidebar
               @handleSelectMenu="handleSelectMenu"
               :categories="categoryList"
+            />
+          </v-col>
+          <v-col md="8" cols="12" order-md="1" order="2">
+            <NewsSections :articles="articleList" />
+            <PaginationComponent
+              v-if="articleList.length > 0"
+              :totalItems="pagination.total"
+              :currentPage="pagination.currentPage"
+              @onPageChange="
+                (page) => {
+                  params.page = page;
+                  getArticle(params);
+                }
+              "
             />
           </v-col>
         </v-row>
@@ -33,6 +44,7 @@ import Sidebar from '@/components/Berita/Sidebar';
 import MainFooter from '@/components/Footer';
 import NewsSections from '~/components/Berita/NewsSections.vue';
 import { kebabToNormalText } from '~/utils/helper';
+import PaginationComponent from '~/components/PaginationComponent.vue';
 
 const { fetchData } = useApi();
 
@@ -58,6 +70,12 @@ const params = reactive({
   page: 1,
   limit: 10,
   category_id: null,
+});
+
+const pagination = ref({
+  currentPage: 1,
+  pageTotal: 0,
+  total: 0,
 });
 
 const categoryList = ref([]);
@@ -94,30 +112,26 @@ const getCategory = async () => {
 const getArticle = async (params) => {
   const { data } = await fetchData(articleUrl, params);
   if (data) articleList.value = data.data.items;
-  console.log('articleList', articleList.value);
+  const cloneData = { ...data.data };
+  delete cloneData.items;
+  cloneData.currentPage = Number(cloneData.currentPage);
+  pagination.value = cloneData;
 };
 
 watch(getQuery, (newValue) => {
-  if (newValue) {
-    const currentCategory = categoryList.value.find(
-      (item) => item.text === kebabToNormalText(newValue)
-    );
-    console.log('currentCategory', currentCategory);
-    params.category_id = currentCategory.id;
-    getArticle(params);
-  }
+  const currentCategory = categoryList.value.find(
+    (item) => item.text === kebabToNormalText(newValue)
+  );
+  params.category_id = currentCategory ? currentCategory.id : null;
+  getArticle(params);
 });
 
 onMounted(async () => {
   await getCategory();
-  // await getArticle();
   if (getQuery.value) {
-    console.log('categoryList', categoryList.value);
-    console.log('getQuery', kebabToNormalText(getQuery.value));
     const currentCategory = categoryList.value.find(
       (item) => item.text === kebabToNormalText(getQuery.value)
     );
-    console.log('currentCategory', currentCategory);
     params.category_id = currentCategory.id;
     getArticle(params);
   } else {

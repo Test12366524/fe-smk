@@ -1,9 +1,8 @@
 <template>
   <v-autocomplete
     v-if="isSmallScreen"
-    v-model="selectedValue"
     label="Kategori"
-    :items="getCategories"
+    :items="getList"
     item-title="text"
     item-value="text"
     required
@@ -18,7 +17,9 @@
   <v-card v-else>
     <header>
       <div class="text">
-        <v-card-title class="use-text-subtitle2"> Kategori </v-card-title>
+        <v-card-title class="use-text-subtitle2">
+          {{ props.title }}
+        </v-card-title>
       </div>
     </header>
     <v-divider />
@@ -26,7 +27,7 @@
       <div>
         <v-list lines="one">
           <v-list-item
-            v-for="(item, index) in getCategories"
+            v-for="(item, index) in getList"
             :key="index"
             :class="{ active: toKebabCase(item.text) === getCategoryFromQuery }"
           >
@@ -50,30 +51,32 @@ const router = useRouter();
 const { smAndDown } = useDisplay();
 
 const props = defineProps({
-  categories: {
+  list: {
     type: Array,
     required: true,
     default: () => [],
   },
+  key: {
+    type: String,
+    default: '',
+  },
+  title: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  selectedValue: {
+    type: String,
+    default: '',
+  },
 });
 
-const getCategories = computed(() => props.categories);
+const getList = computed(() => props.list);
 const getCategoryFromQuery = computed(() => route.query.category);
 const isSmallScreen = computed(() => smAndDown.value);
-const selectedValue = ref('');
-
-watch(getCategoryFromQuery, (newValue) => {
-  selectedValue.value = newValue ? kebabToNormalText(newValue) : null;
-});
-
-onMounted(() => {
-  selectedValue.value = getCategoryFromQuery.value
-    ? kebabToNormalText(getCategoryFromQuery.value)
-    : '';
-});
+const selectedItem = ref(props.selectedValue);
 
 const handleSelectCategory = (category) => {
-  if (!category) return router.replace(`${route.path}`);
   router.push(`${route.path}?category=${category}`);
 };
 </script>
