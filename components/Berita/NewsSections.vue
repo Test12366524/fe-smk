@@ -31,7 +31,6 @@
 <script setup>
 import { computed } from 'vue';
 import imgAPI from '@/assets/images/imgAPI';
-import PostCard from '@/components/Cards/PostCard';
 import NewsCard from '~/components/Cards/NewsCard.vue';
 import { formatFullDate, kebabToNormalText } from '~/utils/helper';
 
@@ -46,9 +45,10 @@ const defaultTitle = 'Berita MAN 1 Yogyakarta';
 const route = useRoute();
 const getCategoryFromQuery = computed(() => route.query.category);
 const articleList = computed(() => props.articles);
-const getTitle = computed(() =>
-  getCategoryFromQuery.value
+const getTitle = computed(() => {
+  if (getCategoryFromQuery.value === 'all') return defaultTitle;
+  return getCategoryFromQuery.value
     ? kebabToNormalText(getCategoryFromQuery.value)
-    : defaultTitle
-);
+    : defaultTitle;
+});
 </script>

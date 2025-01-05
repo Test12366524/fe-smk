@@ -52,16 +52,6 @@ const route = useRoute();
 const router = useRouter();
 const selectedMenu = ref('');
 const getQuery = computed(() => route.query.category);
-const menus = {
-  sejarahSingkat: 'sejarah-singkat',
-  visiMisi: 'visi-misi',
-  saranaPrasarana: 'sarana-prasarana',
-  kepalaMadrasah: 'kepala-madrasah',
-  strukturKepengurusan: 'struktur-kepengurusan',
-  pendidik: 'pendidik',
-  tenagaKependidikan: 'tenaga-kependidikan',
-  peseratDidik: 'peserat-didik',
-};
 
 const categoryUrl = '/article-category/all';
 const articleUrl = '/article';
@@ -106,7 +96,7 @@ const handleSelectMenu = (menu) => {
 
 const getCategory = async () => {
   const { data } = await fetchData(categoryUrl);
-  if (data) categoryList.value = data.data;
+  if (data) categoryList.value = [{ id: null, text: 'All' }, ...data.data];
 };
 
 const getArticle = async (params) => {
@@ -116,6 +106,7 @@ const getArticle = async (params) => {
   delete cloneData.items;
   cloneData.currentPage = Number(cloneData.currentPage);
   pagination.value = cloneData;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 watch(getQuery, (newValue) => {
@@ -135,7 +126,7 @@ onMounted(async () => {
     params.category_id = currentCategory.id;
     getArticle(params);
   } else {
-    getArticle(params);
+    router.push(`${route.path}?category=all`);
   }
 });
 
