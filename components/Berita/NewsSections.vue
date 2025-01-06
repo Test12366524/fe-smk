@@ -13,7 +13,7 @@
               :headline="item.category_name"
               orientation="landscape"
               type="round"
-              href="/blog/detail-blog"
+              :href="`/berita/${item.slug}`"
               :date="formatFullDate(item.created_at).dateOnly"
             />
           </div>

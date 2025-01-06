@@ -20,9 +20,10 @@
         <v-btn
           :size="orientation === 'landscape' ? 'small' : 'regular'"
           variant="text"
+          type="button"
           class="action-btn pl-3"
           color="primary"
-          @click="handleNavigateTo"
+          :href="href"
         >
           Selengkapnya
         </v-btn>
@@ -68,8 +69,11 @@ const props = defineProps({
   },
 });
 
+const router = useRouter();
+
 const handleNavigateTo = () => {
-  navigateTo(props.href);
+  console.log('te');
+  router.push(props.href);
 };
 
 // Computed property for startPadding

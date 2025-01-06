@@ -5,13 +5,28 @@
       <v-container class="mt-10 mt-sm-0">
         <Title head="Galeri" align="center" color="primary" />
         <v-row>
-          <v-col v-for="index in 9" :key="index" sm="4" cols="12">
-            <MediaCard
-              :thumb="imgAPI.photo[10]"
-              title="Sed lacinia velit, ut malesuada eros interdum a"
-              orientation="portrait"
-              type="photo"
-              href="#"
+          <v-col
+            v-for="(item, index) in contentList"
+            :key="index"
+            sm="4"
+            cols="12"
+          >
+            <v-img
+              cover
+              :src="item.image ? getFileUrl(item.image) : imgAPI.photo[10]"
+            />
+          </v-col>
+          <v-col cols="12">
+            <PaginationComponent
+              v-if="contentList.length > 0"
+              :totalItems="pagination.total"
+              :currentPage="pagination.currentPage"
+              @onPageChange="
+                (page) => {
+                  params.page = page;
+                  getList(params);
+                }
+              "
             />
           </v-col>
         </v-row>
@@ -34,6 +49,7 @@ import MainFooter from '@/components/Footer';
 import imgAPI from '~/assets/images/imgAPI';
 import Title from '~/components/Title/Title.vue';
 import MediaCard from '~/components/Cards/MediaCard.vue';
+import PaginationComponent from '~/components/PaginationComponent.vue';
 
 useHead({
   title: `Galeri | ${brand.education.descSecondary}`,
