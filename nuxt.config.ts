@@ -141,7 +141,7 @@ export default defineNuxtConfig({
     '@/assets/scss/vendors/slick-carousel/slick-theme.css',
   ],
 
-  modules: ['@nuxtjs/i18n', 'vite-plugin-eslint', '@pinia/nuxt'],
+  modules: ['@nuxtjs/i18n', 'vite-plugin-eslint'],
   runtimeConfig: {
     public: {
       apiBaseURL: process.env.NUXT_PUBLIC_API_BASE_URL,
