@@ -2,23 +2,23 @@
   <v-select
     v-if="isSmallScreen"
     v-model="selectedValue"
-    label="Kategori"
-    :items="getCategories"
+    label="Navigasi"
+    :items="getList"
     item-title="text"
-    item-value="text"
+    item-value="url"
     required
     clearable
     clear-icon="ri-close-line"
     @update:model-value="
-      (text) => {
-        handleSelectCategory(toKebabCase(text));
+      (url) => {
+        handleSelectItem(url);
       }
     "
   />
   <v-card v-else>
     <header>
       <div class="text">
-        <v-card-title class="use-text-subtitle2"> Kategori </v-card-title>
+        <v-card-title class="use-text-subtitle2"> Navigasi </v-card-title>
       </div>
     </header>
     <v-divider />
@@ -26,14 +26,11 @@
       <div>
         <v-list lines="one">
           <v-list-item
-            v-for="(item, index) in getCategories"
+            v-for="(item, index) in getList"
             :key="index"
-            :class="{ active: toKebabCase(item.text) === getCategoryFromQuery }"
+            :class="{ active: item.url === getCurrentKey }"
           >
-            <div
-              style="cursor: pointer"
-              @click="handleSelectCategory(toKebabCase(item.text))"
-            >
+            <div style="cursor: pointer" @click="handleSelectItem(item.url)">
               <v-list-item-title>{{ item.text }}</v-list-item-title>
             </div>
           </v-list-item>
@@ -50,31 +47,34 @@ const router = useRouter();
 const { smAndDown } = useDisplay();
 
 const props = defineProps({
-  categories: {
+  list: {
     type: Array,
     required: true,
     default: () => [],
   },
 });
 
-const getCategories = computed(() => props.categories);
-const getCategoryFromQuery = computed(() => route.query.category);
+const getList = computed(() => props.list);
+const getCurrentKey = computed(() => route.query.navigasi);
 const isSmallScreen = computed(() => smAndDown.value);
 const selectedValue = ref('');
 
-watch(getCategoryFromQuery, (newValue) => {
-  selectedValue.value = newValue ? kebabToNormalText(newValue) : null;
+const getSelectedValue = (query) => {
+  const currentItem = getList.value.find((item) => item.url === query);
+  return currentItem ? currentItem : null;
+};
+
+watch(getCurrentKey, (newValue) => {
+  selectedValue.value = getSelectedValue(newValue);
 });
 
 onMounted(() => {
-  selectedValue.value = getCategoryFromQuery.value
-    ? kebabToNormalText(getCategoryFromQuery.value)
-    : '';
+  selectedValue.value = getSelectedValue(getCurrentKey.value);
 });
 
-const handleSelectCategory = (category) => {
-  if (!category) return router.replace(`${route.path}`);
-  router.push(`${route.path}?category=${category}`);
+const handleSelectItem = (url) => {
+  router.replace(`${route.path}?navigasi=${url}`);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 </script>
 

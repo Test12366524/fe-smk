@@ -4,21 +4,19 @@
     <div class="container-general">
       <v-container class="mt-10 mt-sm-0">
         <v-row>
-          <v-col md="8" cols="12">
-            <template v-for="index in 5" :key="index">
-              <NewsCardComponent
-                :img="imgAPI.photo[37]"
-                title="Ut sed eros finibus, placerat orci id, dapibus mauris. Vestibulum consequat hendrerit lacus."
-                headline="news"
-                orientation="landscape"
-                type="round"
-                href="#"
-              />
-              <br /><br />
-            </template>
+          <v-col md="4" cols="12" order-md="2" order="1">
+            <sidebar :list="navigationOptions" />
           </v-col>
-          <v-col md="4" cols="12">
-            <sidebar @handleSelectMenu="handleSelectMenu" />
+          <v-col md="8" cols="12" order-md="1" order="2">
+            <h4 class="use-text-title2 title-blog mb-4">
+              {{ getTitle }}
+            </h4>
+            <template v-if="isInfoSection">
+              <InfoSections />
+            </template>
+            <template v-else>
+              <RegisterPpdb />
+            </template>
           </v-col>
         </v-row>
       </v-container>
@@ -36,41 +34,66 @@
 <script setup>
 import brand from '@/assets/text/brand';
 import MainHeader from '@/components/Header';
-import Sidebar from '@/components/Berita/Sidebar';
+import Sidebar from '@/components/PPDB/Sidebar';
 import MainFooter from '@/components/Footer';
-import NewsCardComponent from '~/components/Cards/NewsCard.vue';
-import imgAPI from '~/assets/images/imgAPI';
+import InfoSections from '~/components/PPDB/InfoSections.vue';
+import RegisterPpdb from '~/components/PPDB/RegisterPpdb.vue';
 
 const route = useRoute();
 const router = useRouter();
-const selectedMenu = ref('');
-const getQuery = computed(() => route.query.menu);
-const menus = {
-  sejarahSingkat: 'sejarah-singkat',
-  visiMisi: 'visi-misi',
-  saranaPrasarana: 'sarana-prasarana',
-  kepalaMadrasah: 'kepala-madrasah',
-  strukturKepengurusan: 'struktur-kepengurusan',
-  pendidik: 'pendidik',
-  tenagaKependidikan: 'tenaga-kependidikan',
-  peseratDidik: 'peserat-didik',
+const getCurrentNavigation = computed(() => route.query.navigasi);
+const infoSections = [
+  'informasi-ppdb-regular',
+  'informasi-ppdb',
+  'snpdb',
+  'pengumuman-ppdb',
+];
+
+const isInfoSection = computed(() =>
+  infoSections.includes(getCurrentNavigation.value)
+);
+
+const navigationOptions = [
+  {
+    text: 'Informasi PPDB Regular',
+    url: 'informasi-ppdb-regular',
+  },
+  {
+    text: 'Informasi PPDB',
+    url: 'informasi-ppdb',
+  },
+  {
+    text: 'SNPDB',
+    url: 'snpdb',
+  },
+  {
+    text: 'Daftar PPDB',
+    url: 'daftar-ppdb',
+  },
+  {
+    text: 'Pengumuman PPDB',
+    url: 'pengumuman-ppdb',
+  },
+];
+
+const getCurrentTitle = (query) => {
+  const currentItem = navigationOptions.find((item) => item.url === query);
+  return currentItem ? currentItem : 'Informasi PPDB Regular';
 };
 
-const handleSelectMenu = (menu) => {
-  selectedMenu.value = menu;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+const getTitle = ref(getCurrentTitle(getCurrentNavigation.value).text);
+
+watch(getCurrentNavigation, (newValue) => {
+  getTitle.value = getCurrentTitle(newValue).text;
+});
 
 onMounted(() => {
-  if (getQuery.value) {
-    selectedMenu.value = getQuery.value;
-  } else {
-    selectedMenu.value = menus.sejarahSingkat;
-    router.push(`${route.path}?menu=${selectedMenu.value}`);
+  if (!getCurrentNavigation.value) {
+    router.replace(`${route.path}?navigasi=${navigationOptions[0].url}`);
   }
 });
 
 useHead({
-  title: `Layanan | ${brand.education.descSecondary}`,
+  title: `PPDB | ${brand.education.descSecondary}`,
 });
 </script>

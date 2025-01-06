@@ -7,13 +7,15 @@ import axios from 'axios';
 const useApi = () => {
   const config = useRuntimeConfig();
   const token = useCookie('token').value;
-
-  const axiosInstance = axios.create({
+  const options = {
     baseURL: config.public.apiBaseURL,
-    headers: {
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-  });
+  };
+  if (token) {
+    options.headers = {
+      Authorization: `Bearer ${token}`,
+    };
+  }
+  const axiosInstance = axios.create(options);
 
   const { $toast } = useNuxtApp(); // Access the toast function
 
@@ -69,7 +71,7 @@ const useApi = () => {
         requestConfig
       );
       data = response.data;
-      $toast.success('Data created successfully');
+      $toast.success('Berhasil!');
     } catch (err) {
       error = err;
       $toast.error('Failed to create data');
