@@ -4,7 +4,7 @@
     <v-divider />
     <div>
       <v-list lines="two">
-        <v-list-item>
+        <v-list-item v-if="details.author_name">
           <template #prepend>
             <v-avatar color="grey-lighten-4">
               <v-icon class="grey lighten-3" color="primary">
@@ -15,7 +15,37 @@
           <div>
             <v-list-item-title>Author</v-list-item-title>
             <v-list-item-subtitle>{{
-              details.author_name
+              details.author_name || '-'
+            }}</v-list-item-subtitle>
+          </div>
+        </v-list-item>
+        <v-list-item v-if="details.atas_nama">
+          <template #prepend>
+            <v-avatar color="grey-lighten-4">
+              <v-icon class="grey lighten-3" color="primary">
+                mdi-account
+              </v-icon>
+            </v-avatar>
+          </template>
+          <div>
+            <v-list-item-title>Atas Nama</v-list-item-title>
+            <v-list-item-subtitle>{{
+              details.atas_nama || '-'
+            }}</v-list-item-subtitle>
+          </div>
+        </v-list-item>
+        <v-list-item v-if="details.kompetisi">
+          <template #prepend>
+            <v-avatar color="grey-lighten-4">
+              <v-icon class="grey lighten-3" color="primary">
+                mdi-trophy-variant-outline
+              </v-icon>
+            </v-avatar>
+          </template>
+          <div>
+            <v-list-item-title>Kompetisi</v-list-item-title>
+            <v-list-item-subtitle>{{
+              details.kompetisi || '-'
             }}</v-list-item-subtitle>
           </div>
         </v-list-item>
@@ -30,7 +60,7 @@
           <div>
             <v-list-item-title>Kategori</v-list-item-title>
             <v-list-item-subtitle>{{
-              details.category_name
+              details.category_name || '-'
             }}</v-list-item-subtitle>
           </div>
         </v-list-item>

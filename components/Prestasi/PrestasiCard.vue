@@ -7,7 +7,11 @@
     <div class="figure">
       <v-img :src="img" cover class="white--text" height="200px" />
     </div>
+
     <div class="properties">
+      <v-card-subtitle class="head-line" v-if="headline">
+        {{ headline }}
+      </v-card-subtitle>
       <strong class="use-text-subtitle text-truncate">
         <span>
           {{ title }}
@@ -23,7 +27,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn
-          :href="href"
+          :href="`${href}`"
           variant="outlined"
           class="action-btn"
           color="primary"
@@ -54,6 +58,10 @@ export default {
       type: String,
       required: true,
     },
+    headline: {
+      type: String,
+      default: '',
+    },
     orientation: {
       type: String,
       default: 'portrait',
@@ -64,7 +72,7 @@ export default {
     },
     href: {
       type: String,
-      default: '#',
+      default: '/prestasi',
     },
   },
 };

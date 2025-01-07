@@ -5,13 +5,13 @@
       <v-container class="mt-10 mt-sm-0">
         <Title head="Agenda" align="center" color="primary" />
         <v-row>
-          <v-col md="12">
+          <v-col md="4" cols="12">
             <template v-for="(item, index) in contentList" :key="index + item">
-              <NewsCard
+              <AgendaCard
                 :img="item.cover ? getFileUrl(item.cover) : imgAPI.photo[37]"
                 :title="item.title"
-                headline="agenda"
-                orientation="landscape"
+                :desc="item.content"
+                orientation="portrait"
                 type="round"
                 href="#"
               />
@@ -49,8 +49,8 @@ import MainHeader from '@/components/Header';
 import MainFooter from '@/components/Footer';
 import imgAPI from '~/assets/images/imgAPI';
 import Title from '~/components/Title/Title.vue';
-import NewsCard from '~/components/Cards/NewsCard.vue';
 import PaginationComponent from '~/components/PaginationComponent.vue';
+import AgendaCard from '~/components/Agenda/AgendaCard.vue';
 
 useHead({
   title: `Agenda | ${brand.education.descSecondary}`,

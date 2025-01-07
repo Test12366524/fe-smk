@@ -5,69 +5,68 @@
     max-width="1000"
   >
     <div class="figure">
-      <v-img :src="img" cover class="white--text" height="200px" />
+      <v-img :src="img" class="white--text" height="200px" cover />
     </div>
-    <div class="properties">
-      <strong class="use-text-subtitle text-truncate">
-        <span>
-          {{ title }}
-        </span>
-      </strong>
-      <v-card-subtitle>
-        {{ date }}
-      </v-card-subtitle>
-      <v-card-text class="desc">
-        <span class="text-body-1">
-          <span>{{ desc }}</span>
-        </span>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn
-          :href="href"
-          variant="outlined"
-          class="action-btn"
-          color="primary"
-        >
-          Selengkapnya
-        </v-btn>
-      </v-card-actions>
+    <div :class="startPadding" class="properties">
+      <v-card-subtitle v-if="date"> {{ date }} </v-card-subtitle>
+      <h2 class="mb-1">
+        {{ title }}
+      </h2>
+      <div class="use-text-subtitle4">
+        {{ desc }}
+      </div>
     </div>
   </v-card>
 </template>
 
-<script>
-export default {
-  props: {
-    img: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    date: {
-      type: String,
-      required: true,
-    },
-    desc: {
-      type: String,
-      required: true,
-    },
-    orientation: {
-      type: String,
-      default: 'portrait',
-    },
-    type: {
-      type: String,
-      default: 'full', // available props: full, rounded, over, oval
-    },
-    href: {
-      type: String,
-      default: '#',
-    },
+<script setup>
+// Define props
+const props = defineProps({
+  img: {
+    type: String,
+    required: true,
   },
+  title: {
+    type: String,
+    required: true,
+  },
+  headline: {
+    type: String,
+    default: 'news',
+  },
+  orientation: {
+    type: String,
+    default: 'portrait',
+  },
+  type: {
+    type: String,
+    default: 'full', // available props: full, rounded, over, oval
+  },
+  href: {
+    type: String,
+    default: '#',
+  },
+  date: {
+    type: String,
+    default: '',
+  },
+  desc: {
+    type: String,
+    default: '',
+  },
+});
+
+const router = useRouter();
+
+const handleNavigateTo = () => {
+  console.log('te');
+  router.push(props.href);
 };
+
+// Computed property for startPadding
+const startPadding = computed(
+  () => props.orientation === 'landscape' && props.type !== 'over' && 'ps-0'
+);
 </script>
 
 <style scoped lang="scss">

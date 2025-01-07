@@ -5,15 +5,17 @@
       <v-container class="mt-10 mt-sm-0">
         <Title head="Info" align="center" color="primary" />
         <v-row>
-          <v-col v-for="(item, index) in contentList" :key="index">
-            <InfoCard
-              :title="item.title"
-              :img="item.image ? getFileUrl(item.image) : imgAPI.photo[37]"
-              :desc="item.description"
-              orientation="landscape"
-              type="round"
-              href="#"
-            />
+          <v-col cols="12">
+            <template v-for="(item, index) in contentList" :key="index + item">
+              <AgendaCard
+                :img="item.image ? getFileUrl(item.image) : imgAPI.photo[37]"
+                :title="item.title"
+                :desc="item.description"
+                orientation="portrait"
+                type="round"
+                href="#"
+              />
+            </template>
           </v-col>
           <v-col cols="12">
             <PaginationComponent
@@ -49,6 +51,7 @@ import imgAPI from '~/assets/images/imgAPI';
 import Title from '~/components/Title/Title.vue';
 import InfoCard from '~/components/Info/InfoCard.vue';
 import PaginationComponent from '~/components/PaginationComponent.vue';
+import AgendaCard from '~/components/Agenda/AgendaCard.vue';
 
 const { fetchData } = useApi();
 

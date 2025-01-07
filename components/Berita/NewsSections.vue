@@ -8,17 +8,19 @@
         <template v-for="(item, index) in articleList" :key="index + item.id">
           <div class="mb-8">
             <NewsCard
-              :img="item.cover ? getFileUrl(item.cover) : imgAPI.photo[37]"
+              :img="
+                item[keyImage] ? getFileUrl(item[keyImage]) : imgAPI.photo[37]
+              "
               :title="item.title"
               :headline="item.category_name"
               orientation="landscape"
               type="round"
-              :href="`/berita/${item.slug}`"
+              :href="`${href}/${item[keyId]}`"
               :date="formatFullDate(item.created_at).dateOnly"
             />
           </div>
         </template>
-        <h4 v-if="articleList.length === 0">Berita tidak tersedia</h4>
+        <h4 v-if="articleList.length === 0">Data kosong</h4>
       </v-col>
     </v-row>
   </article>
@@ -39,16 +41,31 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  defaultTitle: {
+    type: String,
+    default: 'Berita MAN 1 Yogyakarta',
+  },
+  href: {
+    type: String,
+    default: '/berita',
+  },
+  keyImage: {
+    type: String,
+    default: 'cover',
+  },
+  keyId: {
+    type: String,
+    default: 'slug',
+  },
 });
 
-const defaultTitle = 'Berita MAN 1 Yogyakarta';
 const route = useRoute();
 const getCategoryFromQuery = computed(() => route.query.category);
 const articleList = computed(() => props.articles);
 const getTitle = computed(() => {
-  if (getCategoryFromQuery.value === 'all') return defaultTitle;
+  if (getCategoryFromQuery.value === 'all') return props.defaultTitle;
   return getCategoryFromQuery.value
     ? kebabToNormalText(getCategoryFromQuery.value)
-    : defaultTitle;
+    : props.defaultTitle;
 });
 </script>
