@@ -24,24 +24,18 @@
         >
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
-        <splide
-          ref="slider"
-          :options="slickOptions"
-        >
-          <splide-slide
-            v-for="(index) in 6"
-            :key="index"
-          >
+        <splide ref="slider" :options="slickOptions">
+          <splide-slide v-for="index in 6" :key="index">
             <div
               class="item px-3"
-              @click="() => showImg(index-1)"
+              @click="() => showImg(index - 1)"
               @keydown.enter="() => showImg(index)"
             >
               <media-card
                 title="Sed lacinia velit, ut malesuada eros interdum a"
                 orientation="portrait"
                 type="photo"
-                :thumb="imgAPI.photo[10 + index]"
+                thumb="https://images.unsplash.com/photo-1735760672876-1c6f801f6436?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               />
             </div>
           </splide-slide>

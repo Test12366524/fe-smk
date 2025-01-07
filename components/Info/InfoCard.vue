@@ -8,26 +8,10 @@
       <v-img :src="img" class="white--text" height="200px" cover />
     </div>
     <div :class="startPadding" class="properties">
-      <v-card-subtitle class="head-line" v-if="headline">
-        {{ headline }}
-      </v-card-subtitle>
-      <v-card-subtitle v-if="date"> {{ date }} </v-card-subtitle>
-      <div class="use-text-subtitle2 news-title">
-        {{ title }}
+      <h2 class="mb-4">{{ title }}</h2>
+      <div class="use-text-subtitle4">
+        {{ desc }}
       </div>
-      <v-card-actions>
-        <v-spacer v-if="orientation === 'portrait'" />
-        <v-btn
-          :size="orientation === 'landscape' ? 'small' : 'regular'"
-          variant="text"
-          type="button"
-          class="action-btn pl-3"
-          color="primary"
-          :href="href"
-        >
-          Selengkapnya
-        </v-btn>
-      </v-card-actions>
     </div>
   </v-card>
 </template>
@@ -40,6 +24,10 @@ const props = defineProps({
     required: true,
   },
   title: {
+    type: String,
+    required: true,
+  },
+  desc: {
     type: String,
     required: true,
   },

@@ -8,12 +8,15 @@
           <v-col
             v-for="(item, index) in contentList"
             :key="index"
-            sm="4"
+            md="4"
+            sm="6"
             cols="12"
           >
-            <v-img
-              cover
-              :src="item.image ? getFileUrl(item.image) : imgAPI.photo[10]"
+            <MediaCard
+              :title="item.title"
+              orientation="portrait"
+              type="photo"
+              :thumb="item.image ? getFileUrl(item.image) : imgAPI.photo[10]"
             />
           </v-col>
           <v-col cols="12">
@@ -48,8 +51,8 @@ import MainHeader from '@/components/Header';
 import MainFooter from '@/components/Footer';
 import imgAPI from '~/assets/images/imgAPI';
 import Title from '~/components/Title/Title.vue';
-import MediaCard from '~/components/Cards/MediaCard.vue';
 import PaginationComponent from '~/components/PaginationComponent.vue';
+import MediaCard from '~/components/Galeri/MediaCard.vue';
 
 useHead({
   title: `Galeri | ${brand.education.descSecondary}`,
