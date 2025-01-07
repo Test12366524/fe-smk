@@ -1,5 +1,7 @@
 <template>
-  <v-card class="mt-16">
+  <v-card class="mt-10 mt-md-16">
+    <v-card-title class="headline">Info</v-card-title>
+    <v-divider />
     <div>
       <v-list lines="two">
         <v-list-item>

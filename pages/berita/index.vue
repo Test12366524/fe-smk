@@ -71,24 +71,6 @@ const pagination = ref({
 const categoryList = ref([]);
 const articleList = ref([]);
 
-const defaultForm = {
-  id: 0,
-  author_id: 0,
-  title: '',
-  subtitle: '',
-  slug: '',
-  cover: '',
-  content: '',
-  publish_date: '',
-  status: 0,
-  created_at: '',
-  updated_at: '',
-  article_category_id: 0,
-  category_name: '',
-  status_desc: '',
-  author_name: '',
-};
-
 const handleSelectMenu = (menu) => {
   selectedMenu.value = menu;
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -123,7 +105,8 @@ onMounted(async () => {
     const currentCategory = categoryList.value.find(
       (item) => item.text === kebabToNormalText(getQuery.value)
     );
-    params.category_id = currentCategory.id;
+    console.log('currentCategory', currentCategory);
+    params.category_id = currentCategory ? currentCategory.id : null;
     getArticle(params);
   } else {
     router.push(`${route.path}?category=all`);

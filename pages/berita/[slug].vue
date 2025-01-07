@@ -1,24 +1,22 @@
 <template>
   <div class="main-wrap">
     <main-header />
-    <div class="container-general">
-      <v-container class="mt-10 mt-sm-0">
-        <v-row>
-          <v-col md="4" cols="12" order-md="2" order="1">
-            <CreatorWidget :details="articleDetails" />
-          </v-col>
-          <v-col md="8" cols="12" order-md="1" order="2">
-            <DetailContent
-              :title="articleDetails.title"
-              :content="articleDetails.content"
-              :image="articleDetails.cover"
-              parentTitle="Berita"
-              parentUrl="/berita"
-            />
-          </v-col>
-        </v-row>
-      </v-container>
-    </div>
+    <v-container class="pt-16">
+      <v-row class="pt-5">
+        <v-col v-if="isSmallScreen" md="4" cols="12" order-md="2" order="1">
+          <CreatorWidget :details="articleDetails" />
+        </v-col>
+        <v-col md="8" cols="12" order-md="1" order="2">
+          <DetailContent
+            :title="articleDetails.title"
+            :content="articleDetails.content"
+            :image="articleDetails.cover"
+            parentTitle="Berita"
+            parentUrl="/berita"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
     <div id="footer">
       <main-footer />
     </div>
@@ -30,33 +28,22 @@
 </style>
 
 <script setup>
-import brand from '@/assets/text/brand';
 import MainHeader from '@/components/Header';
 import MainFooter from '@/components/Footer';
 import DetailContent from '~/components/DetailContent.vue';
 import CreatorWidget from '~/components/Berita/CreatorWidget.vue';
+import { useDisplay } from 'vuetify';
+
+const { mdAndUp } = useDisplay();
+const isSmallScreen = computed(() => mdAndUp.value);
 
 const { fetchData } = useApi();
 
 const route = useRoute();
-const router = useRouter();
-const selectedMenu = ref('');
 const getSlug = computed(() => route.params.slug);
 
 const categoryUrl = '/article-category/all';
 const articleUrl = '/article';
-
-const params = reactive({
-  page: 1,
-  limit: 10,
-  category_id: null,
-});
-
-const pagination = ref({
-  currentPage: 1,
-  pageTotal: 0,
-  total: 0,
-});
 
 const categoryList = ref([]);
 const articleDetails = ref({});
@@ -79,6 +66,6 @@ onMounted(async () => {
 });
 
 useHead({
-  title: `Berita | ${brand.education.descSecondary}`,
+  title: `Berita | ${articleDetails.title}`,
 });
 </script>
