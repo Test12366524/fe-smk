@@ -3,29 +3,24 @@
     <main-header />
     <div class="container-general">
       <v-container class="mt-10 mt-sm-0">
-        <Title head="Info" align="center" color="primary" />
+        <InfoTitle head="Agenda" align="center" color="primary" />
         <v-row>
           <v-col cols="12">
-            <template v-for="(item, index) in contentList" :key="index + item">
-              <AgendaCard
-                :img="item.image ? getFileUrl(item.image) : imgAPI.photo[37]"
-                :title="item.title"
-                :desc="item.description"
-                orientation="portrait"
-                type="round"
-                href="#"
-              />
-            </template>
-          </v-col>
-          <v-col cols="12">
+            <AgendaSections
+              defaultTitle="Agenda"
+              :articles="articleList"
+              href="/agenda"
+              key-image="image"
+              key-id="id"
+            />
             <PaginationComponent
-              v-if="contentList.length > 0"
+              v-if="articleList.length > 0"
               :totalItems="pagination.total"
               :currentPage="pagination.currentPage"
               @onPageChange="
                 (page) => {
                   params.page = page;
-                  getList(params);
+                  getArticle(params);
                 }
               "
             />
@@ -47,19 +42,18 @@
 import brand from '@/assets/text/brand';
 import MainHeader from '@/components/Header';
 import MainFooter from '@/components/Footer';
-import imgAPI from '~/assets/images/imgAPI';
-import Title from '~/components/Title/Title.vue';
-import InfoCard from '~/components/Info/InfoCard.vue';
+import AgendaSections from '~/components/Agenda/AgendaSections.vue';
+import InfoTitle from '@/components/Title/Title';
 import PaginationComponent from '~/components/PaginationComponent.vue';
-import AgendaCard from '~/components/Agenda/AgendaCard.vue';
 
 const { fetchData } = useApi();
 
-const baseUrl = '/info';
+const articleUrl = '/agenda';
 
 const params = reactive({
   page: 1,
   limit: 10,
+  category_id: null,
 });
 
 const pagination = ref({
@@ -68,11 +62,11 @@ const pagination = ref({
   total: 0,
 });
 
-const contentList = ref([]);
+const articleList = ref([]);
 
-const getList = async (params) => {
-  const { data } = await fetchData(baseUrl, params);
-  if (data) contentList.value = data.data.items;
+const getArticle = async (params) => {
+  const { data } = await fetchData(articleUrl, params);
+  if (data) articleList.value = data.data.items;
   const cloneData = { ...data.data };
   delete cloneData.items;
   cloneData.currentPage = Number(cloneData.currentPage);
@@ -81,10 +75,10 @@ const getList = async (params) => {
 };
 
 onMounted(async () => {
-  await getList(params);
+  getArticle(params);
 });
 
 useHead({
-  title: `Info | ${brand.education.descSecondary}`,
+  title: `Agenda | ${brand.education.descSecondary}`,
 });
 </script>

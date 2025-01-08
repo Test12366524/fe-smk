@@ -134,6 +134,6 @@ onMounted(async () => {
 });
 
 useHead({
-  title: `Layanan | ${brand.education.descSecondary}`,
+  title: `Profil | ${brand.education.descSecondary}`,
 });
 </script>

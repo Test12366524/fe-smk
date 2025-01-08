@@ -45,7 +45,7 @@ const props = defineProps({
   },
   headline: {
     type: String,
-    default: 'news',
+    default: '',
   },
   orientation: {
     type: String,

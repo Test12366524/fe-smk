@@ -60,7 +60,7 @@
           <div>
             <v-list-item-title>Kategori</v-list-item-title>
             <v-list-item-subtitle>{{
-              details.category_name || '-'
+              details.category_name || parentTitle || '-'
             }}</v-list-item-subtitle>
           </div>
         </v-list-item>
@@ -90,6 +90,10 @@ const props = defineProps({
     type: Object,
     required: true,
     default: () => {},
+  },
+  parentTitle: {
+    type: String,
+    default: '',
   },
 });
 
