@@ -12,7 +12,7 @@
               {{ getTitle }}
             </h4>
             <template v-if="isInfoSection">
-              <InfoSections />
+              <InfoSections :selectedContent="selectedContent" />
             </template>
             <template v-else>
               <RegisterPpdb />
@@ -49,35 +49,63 @@ const infoSections = [
   'pengumuman-ppdb',
 ];
 
+const { fetchData } = useApi();
+
+const dataDashboard = ref({});
+
 const isInfoSection = computed(() =>
   infoSections.includes(getCurrentNavigation.value)
 );
 
-const navigationOptions = [
-  {
-    text: 'Informasi PPDB Regular',
-    url: 'informasi-ppdb-regular',
-  },
-  {
-    text: 'Informasi PPDB',
-    url: 'informasi-ppdb',
-  },
-  {
-    text: 'SNPDB',
-    url: 'snpdb',
-  },
-  {
-    text: 'Daftar PPDB',
-    url: 'daftar-ppdb',
-  },
-  {
-    text: 'Pengumuman PPDB',
-    url: 'pengumuman-ppdb',
-  },
-];
+const navigationOptions = computed(() => {
+  return [
+    {
+      text: 'Informasi PPDB Regular',
+      url: 'informasi-ppdb-regular',
+      image: dataDashboard.value.ppdb_reguler_image || null,
+      description: dataDashboard.value.ppdb_reguler_description,
+    },
+    {
+      text: 'Informasi PPDB',
+      url: 'informasi-ppdb',
+      image: dataDashboard.value.ppdb_image || null,
+      description: dataDashboard.value.ppdb_description,
+    },
+    {
+      text: 'SNPDB',
+      url: 'snpdb',
+      image: dataDashboard.value.snpdb_image || null,
+      description: dataDashboard.value.snpdb_description,
+    },
+    {
+      text: 'Daftar PPDB',
+      url: 'daftar-ppdb',
+      image: null,
+      description: '',
+    },
+    {
+      text: 'Pengumuman PPDB',
+      url: 'pengumuman-ppdb',
+      image: dataDashboard.value.pengumuman_ppdb_image || null,
+      description: dataDashboard.value.pengumuman_ppdb_description,
+    },
+  ];
+});
+
+const selectedContent = computed(() => {
+  return navigationOptions.value.find(
+    (item) => item.url === getCurrentNavigation.value
+  );
+});
+
+watch(selectedContent, (newValue) => {
+  console.log(newValue);
+});
 
 const getCurrentTitle = (query) => {
-  const currentItem = navigationOptions.find((item) => item.url === query);
+  const currentItem = navigationOptions.value.find(
+    (item) => item.url === query
+  );
   return currentItem ? currentItem : 'Informasi PPDB Regular';
 };
 
@@ -87,10 +115,20 @@ watch(getCurrentNavigation, (newValue) => {
   getTitle.value = getCurrentTitle(newValue).text;
 });
 
+const getDashboard = async () => {
+  const url = '/configuration/tentang-kami';
+  const { data } = await fetchData(url);
+  if (data.data) {
+    dataDashboard.value = data.data;
+    console.log(dataDashboard.value);
+  }
+};
+
 onMounted(() => {
   if (!getCurrentNavigation.value) {
-    router.replace(`${route.path}?navigasi=${navigationOptions[0].url}`);
+    router.replace(`${route.path}?navigasi=${navigationOptions.value[0].url}`);
   }
+  getDashboard();
 });
 
 useHead({

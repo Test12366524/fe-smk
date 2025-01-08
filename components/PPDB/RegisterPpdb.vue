@@ -5,9 +5,16 @@
         <v-row>
           <v-col cols="12" lg="6">
             <v-text-field
+              v-model="nisn"
+              label="NISN"
+              :rules="requiredRules"
+              required
+            />
+          </v-col>
+          <v-col cols="12" lg="6">
+            <v-text-field
               v-model="kip"
               label="KIP"
-              type="number"
               :rules="requiredRules"
               required
             />
@@ -82,7 +89,7 @@
               required
             />
           </v-col> -->
-          <v-col cols="12" lg="4">
+          <v-col cols="12" lg="6">
             <v-text-field
               v-model="email"
               label="Email"
@@ -91,7 +98,7 @@
               required
             />
           </v-col>
-          <v-col cols="12" lg="4">
+          <v-col cols="12" lg="6">
             <v-text-field
               v-model="phone_1"
               label="Telepon 1"
@@ -100,7 +107,7 @@
               required
             />
           </v-col>
-          <v-col cols="12" lg="4">
+          <v-col cols="12" lg="6">
             <v-text-field
               v-model="phone_2"
               label="Telepon 2 (Optional)"
@@ -261,7 +268,7 @@
               required
             />
           </v-col>
-          <v-col cols="12" lg="6">
+          <!-- <v-col cols="12" lg="6">
             <v-select
               v-model="tripay_method"
               :items="tripayMethods"
@@ -269,7 +276,7 @@
               :rules="requiredRules"
               required
             />
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-form>
       <v-btn
@@ -325,7 +332,8 @@ const nik_ayah = ref('');
 const nik_ibu = ref('');
 const no_kk = ref('');
 const asal_sekolah = ref('');
-const tripay_method = ref('');
+const tripay_method = ref(null);
+const nisn = ref('');
 
 const requiredRules = [(v) => !!v || 'This field is required'];
 const emailRules = [
@@ -435,6 +443,7 @@ const submitForm = async () => {
       kks: kks.value,
       nik: nik.value,
       name: name.value,
+      nisn: nisn.value,
       place_of_birth: place_of_birth.value,
       birth_date: birth_date.value,
       gender: gender.value,

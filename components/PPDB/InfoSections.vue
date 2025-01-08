@@ -1,26 +1,17 @@
 <template>
   <article class="blog-content">
-    <figure class="image-blog">
-      <img :src="imgAPI.photo[8]" alt="blog" />
+    <figure v-if="selectedContent.image" class="image-blog">
+      <img
+        :src="
+          selectedContent.image
+            ? getFileUrl(selectedContent.image)
+            : imgAPI.photo[8]
+        "
+        alt="blog"
+      />
     </figure>
-    <strong>Heading</strong>
     <p>
-      Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
-      lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac,
-      vestibulum at eros.
-    </p>
-    <strong>Sub-heading</strong>
-    <p>
-      Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
-      lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac,
-      vestibulum at eros.
-    </p>
-    <p>
-      Example code block Aenean lacinia bibendum nulla sed consectetur. Etiam
-      porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus
-      commodo. Tortor mauris condimentum nibh, ut fermentum massa.
+      {{ selectedContent.description }}
     </p>
     <div class="share-socmed">
       <h3 class="subtitle">
@@ -50,7 +41,18 @@ import { useDisplay } from 'vuetify';
 const { xs } = useDisplay();
 
 const route = useRoute();
-const selectedMenu = computed(() => route.query.menu || 'sejarah-singkat');
+const props = defineProps({
+  selectedContent: {
+    type: Object,
+    default: {
+      text: 'Informasi PPDB Regular',
+      url: 'informasi-ppdb-regular',
+      image: null,
+      description:
+        'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
+    },
+  },
+});
 
 const isMobile = computed(() => xs.value);
 </script>

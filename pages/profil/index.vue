@@ -19,6 +19,7 @@
     <div id="footer">
       <main-footer />
     </div>
+    x
   </div>
 </template>
 
