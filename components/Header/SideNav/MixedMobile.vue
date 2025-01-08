@@ -3,8 +3,10 @@
     <v-list-item
       v-for="(item, index) in menuPrimary"
       :key="index"
-      :href="item.link"
-      :class="{ active: getActiveMenu === item.name }"
+      :href="'/' + item.link"
+      :class="{
+        active: getActiveMenu === item.name || routeName.includes(item.name),
+      }"
       link
     >
       <div>
@@ -13,35 +15,6 @@
         </v-list-item-title>
       </div>
     </v-list-item>
-    <!-- <v-list-group class="group-child">
-      <template #activator="{ props }">
-        <v-list-item v-bind="props">
-          <v-list-item-title class="menu-list">
-            {{ $t('common.header_sample_page') }}
-          </v-list-item-title>
-        </v-list-item>
-      </template>
-      <v-list v-for="(subitem, index) in menuSecondary" :key="index">
-        <v-list-subheader class="title-mega">
-          {{ subitem.name }}
-        </v-list-subheader>
-        <div class="ms-3">
-          <v-list-item
-            v-for="(item, index) in subitem.child"
-            :key="index"
-            :href="item.link"
-            :class="{ current: curURL === curOrigin + langPath + item.link }"
-          >
-            <div>
-              <v-list-item-title
-                class="menu-list"
-                v-text="$t('common.header_' + item.name)"
-              />
-            </div>
-          </v-list-item>
-        </div>
-      </v-list>
-    </v-list-group> -->
   </v-list>
   <v-divider />
   <v-list dense>
@@ -49,7 +22,9 @@
       v-for="(item, index) in ['PPDB']"
       :key="index"
       :href="'/' + item"
-      :class="{ active: getActiveMenu === item.name }"
+      :class="{
+        active: getActiveMenu === item.name || routeName.includes(item.name),
+      }"
       link
     >
       <div>
@@ -96,11 +71,10 @@ export default {
       const path = route.path.substring(4, route.path.length);
       return path;
     },
-  },
-  mounted() {
-    // this.curURL = window.location.href;
-    // this.curOrigin = window.location.origin;
-    // this.langPath = '/' + this.$i18n.locale;
+    routeName() {
+      const route = useRoute();
+      return route.name;
+    },
   },
 };
 </script>

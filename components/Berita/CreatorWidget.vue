@@ -102,8 +102,4 @@ const getDate = computed(() =>
     ? formatFullDate(props.details.created_at).dateOnly
     : ''
 );
-
-onMounted(() => {
-  console.log('pro', props.details);
-});
 </script>

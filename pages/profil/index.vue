@@ -32,7 +32,6 @@ import MainHeader from '@/components/Header';
 import Sidebar from '@/components/Berita/Sidebar';
 import MainFooter from '@/components/Footer';
 import ProfileSections from '~/components/Profil/ProfileSections.vue';
-import { kebabToNormalText } from '~/utils/helper';
 
 const { fetchData } = useApi();
 

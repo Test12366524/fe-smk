@@ -42,7 +42,6 @@
         </section>
         <MainFooter />
       </div>
-      <Corner />
     </div>
   </div>
 </template>
@@ -57,7 +56,6 @@ import DecoFooter from '@/components/Footer/DecorationTop.vue';
 import SubscribeForm from '@/components/SubscribeForm/SubscribeForm.vue';
 import MainHeader from '@/components/Header';
 import MainFooter from '@/components/Footer';
-import Corner from '@/components/Corner/Corner.vue';
 import AchivementCard from '@/components/Home/AchivementCard.vue';
 import brand from '@/assets/text/brand';
 import TeamGrid from '~/components/Alumni/TeamGrid.vue';

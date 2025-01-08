@@ -5,7 +5,9 @@
         v-for="(item, index) in menuPrimary"
         :key="index"
         :href="'/' + item.link"
-        :class="{ active: getActiveMenu === item.name }"
+        :class="{
+          active: getActiveMenu === item.name || routeName.includes(item.name),
+        }"
       >
         <span>{{ item.name }}</span>
       </v-btn>
@@ -15,7 +17,9 @@
         v-for="(item, index) in menuPrimary"
         :key="index"
         :href="'/' + item.link"
-        :class="{ active: getActiveMenu === item.name }"
+        :class="{
+          active: getActiveMenu === item.name || routeName.includes(item.name),
+        }"
       >
         <span>{{ item.name }}</span>
       </v-btn>
@@ -85,6 +89,15 @@ export default {
       const path = route.path.substring(4, route.path.length);
       return path;
     },
+    routeName() {
+      const route = useRoute();
+      return route.name;
+    },
+  },
+  mounted() {
+    console.log('mounted', this.menuPrimary);
+    const route = useRoute();
+    console.log('route', route);
   },
 };
 </script>

@@ -37,6 +37,7 @@
       >
         <slot />
       </v-main>
+      <Corner v-if="loading >= 100" />
     </v-app>
   </theme-wrapper>
 </template>
@@ -50,6 +51,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import ThemeWrapper from '@/components/ThemeWrapper';
+import Corner from '@/components/Corner/Corner.vue';
 
 const loading = ref(0);
 const interval = ref(0);
