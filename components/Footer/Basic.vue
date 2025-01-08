@@ -1,15 +1,12 @@
 <template>
-  <footer class="footer" :class="{'has-bg': bg}">
+  <footer class="footer" :class="{ 'has-bg': bg }">
     <decoration :bg="bg" />
     <v-container class="max-lg">
       <nav>
         <ul>
-          <li
-            v-for="(item, index) in menu"
-            :key="index"
-          >
-            <a :href="'#' + item">
-              {{ $t('education.header_'+item) }}
+          <li v-for="(item, index) in menu" :key="index">
+            <a :href="`/${item}`">
+              {{ item }}
             </a>
           </li>
         </ul>

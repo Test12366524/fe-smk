@@ -1,11 +1,6 @@
 <template>
   <div class="root">
-    <title-main
-      head="Alumni Sekolah Kami"
-      desc="beberapa alumni berprestasi dari sekolah kami"
-      align="center"
-      color="primary"
-    />
+    <title-main head="Alumni" align="center" color="primary" />
     <div class="slider-wrap">
       <div v-if="loaded" class="carousel">
         <splide ref="slider" :options="slickOptions">
@@ -15,6 +10,7 @@
                 :text="item.text"
                 :name="item.name"
                 :title="item.title"
+                :index="index"
               />
             </div>
           </splide-slide>

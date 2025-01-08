@@ -16,6 +16,7 @@
     <div id="footer">
       <main-footer />
     </div>
+    <Corner />
   </div>
 </template>
 
@@ -29,6 +30,7 @@ import MainHeader from '@/components/Header';
 import Sidebar from '@/components/Profil/Sidebar';
 import MainFooter from '@/components/Footer';
 import ProfileSections from '~/components/Profil/ProfileSections.vue';
+import Corner from '~/components/Corner/Corner.vue';
 
 const route = useRoute();
 const router = useRouter();

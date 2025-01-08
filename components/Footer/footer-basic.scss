@@ -22,13 +22,18 @@
         display: inline-block;
         margin: spacing(0, 1);
         a {
-          @include use-theme(color, $palette-primary-main, $palette-primary-light);
+          cursor: pointer;
+          @include use-theme(
+            color,
+            $palette-primary-main,
+            $palette-primary-light
+          );
           text-transform: capitalize;
           text-decoration: none !important;
           padding: spacing(0, 1);
           font-size: 18px;
           @include breakpoints-down(xs) {
-            font-size: 16px
+            font-size: 16px;
           }
         }
       }
@@ -69,6 +74,6 @@
   padding: spacing(1.5);
   margin-top: spacing(3);
   p {
-    margin-bottom: 0
+    margin-bottom: 0;
   }
 }

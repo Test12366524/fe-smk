@@ -7,8 +7,8 @@
     <div class="slide center-content">
       <div class="inner">
         <v-container>
-          <v-row>
-            <v-col md="7" lg="6" cols="12" class="px-6 d-flex align-center">
+          <v-row align="center">
+            <v-col md="12" lg="6" cols="12" class="px-6 d-flex align-center">
               <div class="text">
                 <h4 class="use-text-title">MAN 1 Yogyakarta</h4>
                 <h5 class="use-text-subtitle">
@@ -36,13 +36,6 @@
             </v-col>
             <v-col md="5" lg="6" cols="12">
               <div class="img">
-                <!-- <img
-                  class="img-2d3d"
-                  :src="imgAPI.education[26]"
-                  :data-2d="imgAPI.education[25]"
-                  :data-3d="imgAPI.education[26]"
-                  alt="background"
-                /> -->
                 <img
                   :src="imgAPI.educationInner[1]"
                   :data-2d="imgAPI.educationInner[0]"

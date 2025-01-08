@@ -7,19 +7,7 @@
         align="center"
         color="primary"
       />
-      <v-row>
-        <v-col v-for="(item, index) in list" :key="index" md="4" cols="12">
-          <PostCard
-            :img="item.cover ? getFileUrl(item.cover) : imgAPI.photo[36]"
-            :title="item.title"
-            :desc="item.content"
-            :date="formatFullDate(item.created_at).dateOnly"
-            orientation="portrait"
-            type="round"
-            :href="`prestasi/${item.id}`"
-          />
-        </v-col>
-      </v-row>
+      <TeamGrid list="alumniList" />
     </v-container>
   </div>
 </template>
@@ -28,6 +16,7 @@
 import imgAPI from '@/assets/images/imgAPI';
 import PostCard from '../Cards/PostCard.vue';
 import Title from '../Title/Title.vue';
+import TeamGrid from '../Alumni/TeamGrid.vue';
 
 const props = defineProps({
   list: {

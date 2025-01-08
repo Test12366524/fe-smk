@@ -18,7 +18,7 @@
         <div v-if="yt" class="text-center mx-auto py-4">
           <YouTube
             ref="youtube"
-            :src="videoId"
+            :src="youtubeId"
             :vars="playerVars"
             :width="640"
             :height="360"
@@ -62,7 +62,7 @@
         </v-col>
         <v-col class="pa-md-10 pa-4" md="6" cols="12">
           <div v-if="loaded" class="blog-list">
-            <div v-for="(item, index) in blogData" :key="index">
+            <div v-for="(item, index) in articleList" :key="index">
               <div
                 data-aos="fade-left"
                 data-aos-offset="-200"
@@ -73,15 +73,11 @@
                   :category="item.category"
                   :title="item.title"
                   :date="item.date"
+                  :details="item.details"
                 />
               </div>
             </div>
-            <v-btn
-              class="more"
-              :href="link.education.blog"
-              variant="text"
-              color="secondary"
-            >
+            <v-btn class="more" href="/berita" variant="text" color="secondary">
               lihat selengkapnya
             </v-btn>
           </div>
@@ -130,6 +126,16 @@ export default {
     'title-main': Title,
     Hidden,
     BlogCard,
+  },
+  props: {
+    articleList: {
+      type: Array,
+      default: () => [],
+    },
+    youtubeId: {
+      type: String,
+      default: '6p0VM-yUpGk',
+    },
   },
   data() {
     return {

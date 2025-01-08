@@ -1,5 +1,5 @@
 {
-  common: {
+  "common": {
     "title": "A simple example",
     "subtitle": "It's a blank-page. Start to build your'e page from here.",
     "error_with_status": "An error occurred on server",
@@ -142,14 +142,14 @@
     "footer_link": "link",
     "footer_news": "news"
   },
-  education: {
+  "education": {
     "header_feature": "main feature",
     "header_popular": "popular course",
     "header_explore": "explore",
     "header_testimonials": "testimonials",
     "header_blog": "blog",
     "banner_title": "Upgrade Yourself",
-    "banner_desc": "Anywhere, anytime. Start learning today! And Get an Exceptional Education Experience.",
+    "banner_desc": "Prestasi Tiada Henti, Cerdas Islami dan Berkelas Dunia.",
     "banner_search": "Search course...",
     "feature_title": "Main Feature",
     "feature_desc": "The world's largest selection of courses",

@@ -1,8 +1,8 @@
 <template>
-  <basic v-if="type === 'basic'" :bg="bg" />
-  <blog v-if="type === 'blog'" :bg="bg" />
+  <basic :bg="bg" />
+  <!-- <blog v-if="type === 'blog'" :bg="bg" />
   <contact-footer v-if="type === 'contact'" :bg="bg" />
-  <site-map v-if="type === 'sitemap'" :bg="bg" />
+  <site-map v-if="type === 'sitemap'" :bg="bg" /> -->
 </template>
 
 <script>

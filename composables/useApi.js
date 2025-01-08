@@ -10,11 +10,11 @@ const useApi = () => {
   const options = {
     baseURL: config.public.apiBaseURL,
   };
-  if (token) {
-    options.headers = {
-      Authorization: `Bearer ${token}`,
-    };
-  }
+  // if (token) {
+  //   options.headers = {
+  //     Authorization: `Bearer ${token}`,
+  //   };
+  // }
   const axiosInstance = axios.create(options);
 
   const { $toast } = useNuxtApp(); // Access the toast function

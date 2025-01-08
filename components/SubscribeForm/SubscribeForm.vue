@@ -6,7 +6,7 @@
       </h3>
       <p>Daftar sekarang juga, disini.</p>
       <section class="action-button">
-        <v-btn color="primary" class="button">
+        <v-btn color="primary" class="button" href="/ppdb?navigasi=daftar-ppdb">
           <span>Daftar PPDB</span>
         </v-btn>
       </section>
