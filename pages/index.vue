@@ -42,6 +42,7 @@
         </section>
         <MainFooter />
       </div>
+      <PageNav />
     </div>
   </div>
 </template>
@@ -62,6 +63,7 @@ import TeamGrid from '~/components/Alumni/TeamGrid.vue';
 import AlumniCards from '~/components/Home/AlumniCards.vue';
 import Title from '~/components/Title/Title.vue';
 import imgAPI from '@/assets/images/imgAPI';
+import PageNav from '~/components/PageNav/PageNav.vue';
 
 useHead({
   title: brand.education.desc,

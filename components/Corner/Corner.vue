@@ -1,6 +1,5 @@
 <template>
-  <page-nav v-if="type === 'nav'" />
-  <chat v-if="type === 'chat'" />
+  <chat />
 </template>
 
 <script>
