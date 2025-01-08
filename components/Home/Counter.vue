@@ -63,6 +63,48 @@
   </div>
 </template>
 
+<script>
+import CountUp from 'vue-countup-v3';
+import { ref } from 'vue';
+
+export default {
+  components: {
+    CountUp,
+  },
+  props: {
+    dark: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup() {
+    const visible = ref(false);
+    const wrapper = ref(null);
+    const offset = 500;
+    function runCounter() {
+      const scrollPosition =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      const topPosition = scrollPosition + offset;
+
+      if (topPosition > wrapper.value.offsetTop) {
+        visible.value = true;
+      }
+    }
+
+    return {
+      visible,
+      runCounter,
+      wrapper,
+    };
+  },
+  data() {
+    return {
+      loaded: false,
+    };
+  },
+};
+</script>
+
 <style scoped lang="scss">
 .counter-wrap {
   position: relative;
@@ -116,45 +158,3 @@
   }
 }
 </style>
-
-<script>
-import CountUp from 'vue-countup-v3';
-import { ref } from 'vue';
-
-export default {
-  components: {
-    CountUp,
-  },
-  props: {
-    dark: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup() {
-    const visible = ref(false);
-    const wrapper = ref(null);
-    const offset = 500;
-    function runCounter() {
-      const scrollPosition =
-        document.documentElement.scrollTop || document.body.scrollTop;
-      const topPosition = scrollPosition + offset;
-
-      if (topPosition > wrapper.value.offsetTop) {
-        visible.value = true;
-      }
-    }
-
-    return {
-      visible,
-      runCounter,
-      wrapper,
-    };
-  },
-  data() {
-    return {
-      loaded: false,
-    };
-  },
-};
-</script>

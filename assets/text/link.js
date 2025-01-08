@@ -16,6 +16,7 @@ const link = {
     faq: '/utils/faq',
     maintenance: '/utils/maintenance',
     comingSoon: '/utils/coming-soon',
+    whatsapp: 'https://api.whatsapp.com/send/?phone=6282118939490',
   },
 };
 

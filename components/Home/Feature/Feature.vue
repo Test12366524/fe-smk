@@ -2,95 +2,27 @@
   <div ref="wrapper" v-scroll="runCounter" class="root">
     <v-container class="max-md">
       <v-row class="spacing8 grid">
-        <v-col sm="6" class="px-8">
+        <v-col sm="6" class="px-8" v-for="(item, index) in list" :key="index">
           <div class="counter-item">
             <figure>
               <img
                 class="img-2d3d"
-                :src="imgAPI.education[28]"
+                :src="item.img"
                 :data-2d="imgAPI.education[27]"
-                :data-3d="imgAPI.education[28]"
+                :data-3d="item.img"
                 alt="feature"
               />
             </figure>
             <div v-if="loaded" class="text">
-              <h4 class="use-text-subtitle">
+              <h4
+                class="use-text-subtitle"
+                v-if="typeof item.title === 'number'"
+              >
                 {{ !visible ? 0 : '' }}
-                <count-up
-                  v-if="visible"
-                  :start-val="0"
-                  :end-val="100"
-                  :options="{ prefix: '+', suffix: 'K' }"
-                />
+                <count-up v-if="visible" :start-val="0" :end-val="item.title" />
               </h4>
-              <h6 class="use-text-subtitle2">Kurikulum Terupdate</h6>
-            </div>
-          </div>
-        </v-col>
-        <v-col sm="6" class="px-8">
-          <div class="counter-item">
-            <figure>
-              <img
-                class="img-2d3d"
-                :src="imgAPI.education[30]"
-                :data-2d="imgAPI.education[29]"
-                :data-3d="imgAPI.education[30]"
-                alt="feature"
-              />
-            </figure>
-            <div v-if="loaded" class="text">
-              <h4 class="use-text-subtitle">
-                {{ !visible ? 0 : '' }}
-                <count-up
-                  v-if="visible"
-                  :start-val="0"
-                  :end-val="200"
-                  :options="{ prefix: '+' }"
-                />
-              </h4>
-              <h6 class="use-text-subtitle2">Lulusan terbaik</h6>
-            </div>
-          </div>
-        </v-col>
-        <v-col sm="6" class="px-8">
-          <div class="counter-item">
-            <figure>
-              <img
-                class="img-2d3d"
-                :src="imgAPI.education[32]"
-                :data-2d="imgAPI.education[31]"
-                :data-3d="imgAPI.education[32]"
-                alt="feature"
-              />
-            </figure>
-            <div v-if="loaded" class="text">
-              <h4 class="use-text-subtitle">
-                {{ !visible ? 0 : '' }}
-                <count-up
-                  v-if="visible"
-                  :start-val="500"
-                  :end-val="0"
-                  :options="{ prefix: 'Rp' }"
-                />
-              </h4>
-              <h6 class="use-text-subtitle2">Biaya Terjangkau</h6>
-            </div>
-          </div>
-        </v-col>
-        <v-col sm="6" class="px-8">
-          <div class="counter-item">
-            <figure>
-              <img
-                class="img-2d3d"
-                :src="imgAPI.education[34]"
-                :data-2d="imgAPI.education[33]"
-                :data-3d="imgAPI.education[34]"
-                alt="feature"
-              />
-            </figure>
-            <div v-if="loaded" class="text">
-              <h4 class="use-text-subtitle">Free</h4>
-              <h6 class="use-text-subtitle2">Tersedia Beasiswa</h6>
+              <h4 class="use-text-subtitle" v-else>{{ item.title }}</h4>
+              <h6 class="use-text-subtitle2">{{ item.desc }}</h6>
             </div>
           </div>
         </v-col>
@@ -103,45 +35,39 @@
 @import 'feature-style.scss';
 </style>
 
-<script>
-import { ref } from 'vue';
+<script setup>
+import { ref, onMounted } from 'vue';
 import CountUp from 'vue-countup-v3';
 import imgAPI from '@/assets/images/imgAPI';
-import Title from '../../Title';
 
-export default {
-  components: {
-    'title-main': Title,
-    CountUp,
+const props = defineProps({
+  list: {
+    type: Array,
+    default: () => [],
   },
-  setup() {
-    const visible = ref(false);
-    const wrapper = ref(null);
-    const offset = 500;
-    function runCounter() {
-      const scrollPosition =
-        document.documentElement.scrollTop || document.body.scrollTop;
-      const topPosition = scrollPosition + offset;
+});
 
-      if (topPosition > wrapper.value.offsetTop) {
-        visible.value = true;
-      }
-    }
+const visible = ref(false);
+const wrapper = ref(null);
+const loaded = ref(false);
+const offset = 500;
 
-    return {
-      visible,
-      runCounter,
-      wrapper,
-    };
-  },
-  data() {
-    return {
-      imgAPI,
-      loaded: false,
-    };
-  },
-  mounted() {
-    this.loaded = true;
-  },
+const runCounter = () => {
+  const scrollPosition =
+    document.documentElement.scrollTop || document.body.scrollTop;
+  const topPosition = scrollPosition + offset;
+
+  if (topPosition > wrapper.value.offsetTop) {
+    visible.value = true;
+  }
 };
+
+onMounted(() => {
+  loaded.value = true;
+  window.addEventListener('scroll', runCounter);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', runCounter);
+});
 </script>

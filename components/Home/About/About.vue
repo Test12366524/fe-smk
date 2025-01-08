@@ -26,12 +26,21 @@
           cols="12"
         >
           <title-main
-            head="Tentang Kami"
-            desc="Selamat datang di MAN 1 Yogyakarta, tempat di mana pendidikan berkualitas dan nilai-nilai Islam berpadu harmonis. Kami berkomitmen untuk membentuk generasi yang berakhlak mulia, cerdas, dan berwawasan luas."
+            :head="title"
+            :desc="desc"
             :align="isMobile ? 'center' : 'left'"
             color="secondary"
           />
-          <v-btn :href="link.education.login" class="btn" color="secondary">
+          <v-btn
+            @click="
+              () => {
+                openWhatsapp();
+              }
+            "
+            type="button"
+            class="btn"
+            color="secondary"
+          >
             Kontak Kami
           </v-btn>
         </v-col>
@@ -62,6 +71,22 @@ export default {
     isMobile() {
       const smDown = this.$vuetify.display.smAndDown;
       return smDown;
+    },
+  },
+  props: {
+    title: {
+      type: String,
+      default: 'Tentang Kami',
+    },
+    desc: {
+      type: String,
+      default:
+        'Selamat datang di MAN 1 Yogyakarta, tempat di mana pendidikan berkualitas dan nilai-nilai Islam berpadu harmonis. Kami berkomitmen untuk membentuk generasi yang berakhlak mulia, cerdas, dan berwawasan luas.',
+    },
+  },
+  methods: {
+    openWhatsapp() {
+      window.open(link.education.whatsapp, '_blank');
     },
   },
   mounted() {

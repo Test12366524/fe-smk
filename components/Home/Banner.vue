@@ -7,18 +7,22 @@
             <v-col cols="12" md="6" class="px-sm-5 px-0">
               <div class="text">
                 <h4 class="use-text-title">
-                  Pellentesque habitant morbi tristique senectus
+                  {{ props.title }}
                 </h4>
                 <h5 class="use-text-subtitle2">
-                  Multiple lines of text that form the lede, informing new
-                  readers quickly and efficiently about what's most interesting
-                  in this post's contents
+                  {{ props.desc }}
                 </h5>
               </div>
             </v-col>
             <v-col cols="12" md="6" class="px-sm-5 px-0">
               <div class="img">
-                <slot />
+                <img
+                  :src="imgAPI.educationInner[1]"
+                  :data-2d="imgAPI.educationInner[0]"
+                  :data-3d="imgAPI.educationInner[1]"
+                  class="img-2d3d"
+                  alt="services 3d"
+                />
               </div>
             </v-col>
           </v-row>
@@ -31,6 +35,16 @@
 <script setup>
 import HeroBanner from '../HeroBanner';
 import imgAPI from '@/assets/images/imgAPI';
+const props = defineProps({
+  title: {
+    type: String,
+    default: () => 'MAN 1 Yogyakarta',
+  },
+  desc: {
+    type: String,
+    default: () => 'Prestasi Tiada Henti, Cerdas Islami dan Berkelas Dunia',
+  },
+});
 </script>
 
 <style scoped lang="scss">

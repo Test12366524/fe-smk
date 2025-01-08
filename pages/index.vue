@@ -4,14 +4,15 @@
       <MainHeader home />
       <div class="container-wrap scroll-nav-content">
         <div id="home">
-          <BannerSlider />
+          <Banner />
         </div>
-        <section id="feature" class="space-top">
-          <Feature />
-        </section>
         <section id="about" class="space-top">
-          <About />
+          <About :desc="dataDashboard.home_tantang_kami_description" />
         </section>
+        <section id="feature" class="space-top">
+          <Feature :list="featureData" />
+        </section>
+
         <section id="blog" class="space-top" v-if="articleList.length >= 3">
           <Blog :article-list="articleList" />
         </section>
@@ -47,7 +48,7 @@
 </template>
 
 <script setup>
-import BannerSlider from '@/components/Home/BannerSlider/BannerSlider.vue';
+import Banner from '@/components/Home/Banner.vue';
 import Feature from '@/components/Home/Feature/Feature.vue';
 import About from '@/components/Home/About/About.vue';
 import Testimonials from '@/components/Home/Testimonials/Testimonials.vue';
@@ -62,6 +63,7 @@ import brand from '@/assets/text/brand';
 import TeamGrid from '~/components/Alumni/TeamGrid.vue';
 import AlumniCards from '~/components/Home/AlumniCards.vue';
 import Title from '~/components/Title/Title.vue';
+import imgAPI from '@/assets/images/imgAPI';
 
 useHead({
   title: brand.education.desc,
@@ -72,6 +74,33 @@ const { fetchData } = useApi();
 const articleList = ref([]);
 const alumniList = ref([]);
 const prestasiList = ref([]);
+const dataDashboard = ref({});
+const featureData = computed(() => {
+  return [
+    {
+      img: imgAPI.education[28],
+      title: dataDashboard.value.home_statistik_title || 500,
+      desc: dataDashboard.value.home_statistik_description || 'Alumni',
+    },
+    {
+      img: imgAPI.education[30],
+      title: dataDashboard.value.home_statistik_title2 || 100,
+      desc:
+        dataDashboard.value.home_statistik_description2 || 'Sarana Prasarana',
+    },
+    {
+      img: imgAPI.education[32],
+      title: dataDashboard.value.home_statistik_title3 || 100,
+      desc: dataDashboard.value.home_statistik_description3 || 'Pengajar',
+    },
+    {
+      img: imgAPI.education[34],
+      title: dataDashboard.value.home_statistik_title4 || 500,
+      desc:
+        dataDashboard.value.home_statistik_description4 || 'Lulusan Terbaik',
+    },
+  ];
+});
 const params = reactive({
   page: 1,
   limit: 3,
@@ -89,7 +118,6 @@ const getArticleList = async () => {
         details: item,
       };
     });
-    console.log('articleList', articleList.value);
   }
 };
 
@@ -98,7 +126,6 @@ const getAlumniList = async () => {
   const { data } = await fetchData(url, params);
   if (data.data.items) {
     alumniList.value = data.data.items;
-    console.log('alumniList', alumniList.value);
   }
 };
 
@@ -107,11 +134,19 @@ const getPrestasiList = async () => {
   const { data } = await fetchData(url, params);
   if (data.data.items) {
     prestasiList.value = data.data.items;
-    console.log('prestasiList', prestasiList.value);
+  }
+};
+
+const getDashboard = async () => {
+  const url = '/configuration/tentang-kami';
+  const { data } = await fetchData(url);
+  if (data.data) {
+    dataDashboard.value = data.data;
   }
 };
 
 onMounted(() => {
+  getDashboard();
   getArticleList();
   getAlumniList();
   getPrestasiList();
