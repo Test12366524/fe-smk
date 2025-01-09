@@ -90,6 +90,7 @@ const getCategory = async () => {
 const getArticle = async (params) => {
   const { data } = await fetchData(articleUrl, params);
   if (data) articleList.value = data.data.items;
+  console.log('getArticle', articleList.value);
   const cloneData = { ...data.data };
   delete cloneData.items;
   cloneData.currentPage = Number(cloneData.currentPage);

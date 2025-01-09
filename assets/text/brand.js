@@ -6,9 +6,9 @@ const brand = {
     prefix: 'naditechno',
     footerText: `Naditechno ${new Date().getFullYear()}`,
     logoText: 'SiAkad Sekolah',
-    projectName: 'Education Theme',
+    projectName: 'SiAkad Sekolah',
     url: 'https://naditechno.com/',
-    img: '/images/education-logo.png',
+    img: '/images/siakad-sekolah-logo.png',
   },
 };
 
