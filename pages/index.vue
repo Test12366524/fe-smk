@@ -14,7 +14,10 @@
         </section>
 
         <section id="blog" class="space-top" v-if="articleList.length >= 3">
-          <Blog :article-list="articleList" />
+          <Blog
+            :article-list="articleList"
+            :youtube-id="dataDashboard.home_link_youtube"
+          />
         </section>
         <section
           id="testimonials"
