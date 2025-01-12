@@ -35,7 +35,7 @@
       <div class="pa-md-8 pa-2">
         <title-main
           head="Berita Terbaru"
-          desc="berita terbaru dari man 1 yogyakarta"
+          desc="berita terbaru dari Berita MA Miftahul Ulum Bettet Pamekasan"
           :align="isMobile ? 'center' : 'left'"
           color="secondary"
         />
@@ -103,19 +103,19 @@ import Hidden from '../../Hidden';
 const blogData = [
   {
     title:
-      'Awali Tahun Baru MAN 1 Yogyakarta Adakan Peringatan Hari Amal Bhakti Tahun 2025',
+      'Awali Tahun Baru Berita MA Miftahul Ulum Bettet Pamekasan Adakan Peringatan Hari Amal Bhakti Tahun 2025',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },
   {
     title:
-      'Semangat Baru di Semester Genap: MAN 1 Yogyakarta Bahas Program Strategis',
+      'Semangat Baru di Semester Genap: Berita MA Miftahul Ulum Bettet Pamekasan Bahas Program Strategis',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },
   {
     title:
-      'Semangat Baru di Semester Genap: MAN 1 Yogyakarta Bahas Program Strategis',
+      'Semangat Baru di Semester Genap: Berita MA Miftahul Ulum Bettet Pamekasan Bahas Program Strategis',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },

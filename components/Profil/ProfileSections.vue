@@ -59,11 +59,11 @@ const getTitle = ref('');
 const menus = ref([
   {
     key: 'sejarah-singkat',
-    title: 'Sejarah Singkat MAN 1 Yogyakarta',
+    title: 'Sejarah Singkat Berita MA Miftahul Ulum Bettet Pamekasan',
   },
   {
     key: 'visi-misi',
-    title: 'Visi Misi MAN 1 Yogyakarta',
+    title: 'Visi Misi Berita MA Miftahul Ulum Bettet Pamekasan',
   },
   {
     key: 'sarana-prasarana',
@@ -93,7 +93,8 @@ const menus = ref([
 
 const handleSetContent = (keyValue) => {
   const pageTitle = menus.value.find((menu) => menu.key === keyValue).title;
-  getTitle.value = pageTitle || 'Visi Misi MAN 1 Yogyakarta';
+  getTitle.value =
+    pageTitle || 'Visi Misi Berita MA Miftahul Ulum Bettet Pamekasan';
 };
 
 watch(selectedMenu, (newValue) => {
