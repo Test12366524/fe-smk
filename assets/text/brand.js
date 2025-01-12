@@ -1,14 +1,15 @@
 const brand = {
   education: {
-    name: 'SiAkad Sekolah',
-    desc: 'SiAKad Sekolah | Selamat Datang Di Official Web SiAkad Sekolah',
-    descSecondary: ' | Selamat Datang Di Official Web SiAkad Sekolah',
+    name: 'MA Miftahul Ulum',
+    desc: 'MA Miftahul Ulum | Selamat Datang Di Official Web MA Miftahul Ulum Bettet Pamekasan',
+    descSecondary:
+      ' | Selamat Datang Di Official Web MA Miftahul Ulum Bettet Pamekasan',
     prefix: 'naditechno',
     footerText: `Naditechno ${new Date().getFullYear()}`,
     logoText: 'SiAkad Sekolah',
     projectName: 'SiAkad Sekolah',
     url: 'https://naditechno.com/',
-    img: '/images/siakad-sekolah-logo.png',
+    img: '/images/ma-mub-logo.png',
   },
 };
 

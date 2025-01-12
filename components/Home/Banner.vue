@@ -38,7 +38,7 @@ import imgAPI from '@/assets/images/imgAPI';
 const props = defineProps({
   title: {
     type: String,
-    default: () => 'MAN 1 Yogyakarta',
+    default: () => 'MA Miftahul Ulum Bettet Pamekasan',
   },
   desc: {
     type: String,
