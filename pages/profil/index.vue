@@ -75,34 +75,20 @@ const navigationList = computed(() => {
       image: dashboardData.value?.profile_kepala_madrasah_image || null,
       content: dashboardData.value?.profile_kepala_madrasah_description,
     },
-    // {
-    //   id: 5,
-    //   text: 'Struktur Kepengurusan',
-    //   title: 'Struktur Kepengurusan',
-    //   image: null,
-    //   content: '',
-    // },
-    // {
-    //   id: 6,
-    //   text: 'Pendidik',
-    //   title: 'Pendidik',
-    //   image: null,
-    //   content: '',
-    // },
+    {
+      id: 8,
+      text: 'Komite Madrasah',
+      title: dashboardData.value.peserta_didik_title || 'Komite Madrasah',
+      image: dashboardData.value.peserta_didik_image || null,
+      content: dashboardData.value.peserta_didik_description,
+    },
     {
       id: 7,
-      text: 'Tenaga Kependidikan',
+      text: 'Struktur Organisasi',
       title:
         dashboardData.value.tenaga_kependidikan_title || 'Tenaga Kependidikan',
       image: dashboardData.value.tenaga_kependidikan_image || null,
       content: dashboardData.value.tenaga_kependidikan_description,
-    },
-    {
-      id: 8,
-      text: 'Peserat Didik',
-      title: dashboardData.value.peserta_didik_title || 'Peserat Didik',
-      image: dashboardData.value.peserta_didik_image || null,
-      content: dashboardData.value.peserta_didik_description,
     },
   ];
 });
