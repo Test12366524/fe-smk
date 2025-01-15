@@ -2,7 +2,7 @@
   <div class="root">
     <v-container class="max-sm">
       <h3 class="use-text-title2 mb-4">
-        PENDAFTARAN SISWA BARU ONLINE MA MIFTAHUL ULUM BETTET PAMEKASAN
+        PENDAFTARAN SISWA BARU ONLINE SMK Tunas Kasih
       </h3>
       <p>Daftar sekarang juga, disini.</p>
       <section class="action-button">
