@@ -10,7 +10,7 @@
 </style>
 
 <script>
-import logo from '@/assets/images/ma-mub-logo.png';
+import logo from '@/assets/images/logo-smk-tunaskasih.png';
 import brand from '@/assets/text/brand';
 
 export default {
