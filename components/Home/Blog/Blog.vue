@@ -35,7 +35,7 @@
       <div class="pa-md-8 pa-2">
         <title-main
           head="Berita Terbaru"
-          desc="berita terbaru dari Berita SMK Tunas Kasih Bettet Pamekasan"
+          desc="berita terbaru dari Berita SMK Tunas Kasih "
           :align="isMobile ? 'center' : 'left'"
           color="secondary"
         />
@@ -103,19 +103,19 @@ import Hidden from '../../Hidden';
 const blogData = [
   {
     title:
-      'Awali Tahun Baru Berita SMK Tunas Kasih Bettet Pamekasan Adakan Peringatan Hari Amal Bhakti Tahun 2025',
+      'Awali Tahun Baru Berita SMK Tunas Kasih  Adakan Peringatan Hari Amal Bhakti Tahun 2025',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },
   {
     title:
-      'Semangat Baru di Semester Genap: Berita SMK Tunas Kasih Bettet Pamekasan Bahas Program Strategis',
+      'Semangat Baru di Semester Genap: Berita SMK Tunas Kasih  Bahas Program Strategis',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },
   {
     title:
-      'Semangat Baru di Semester Genap: Berita SMK Tunas Kasih Bettet Pamekasan Bahas Program Strategis',
+      'Semangat Baru di Semester Genap: Berita SMK Tunas Kasih  Bahas Program Strategis',
     category: 'Science - Math',
     date: 'Feb 08 2021',
   },

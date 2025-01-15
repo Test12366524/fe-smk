@@ -38,7 +38,7 @@ import imgAPI from '@/assets/images/imgAPI';
 const props = defineProps({
   title: {
     type: String,
-    default: () => 'SMK Tunas Kasih Bettet Pamekasan',
+    default: () => 'SMK Tunas Kasih ',
   },
   desc: {
     type: String,

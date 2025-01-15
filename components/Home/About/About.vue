@@ -81,7 +81,7 @@ export default {
     desc: {
       type: String,
       default:
-        'Selamat datang di Berita SMK Tunas Kasih Bettet Pamekasan, tempat di mana pendidikan berkualitas dan nilai-nilai Islam berpadu harmonis. Kami berkomitmen untuk membentuk generasi yang berakhlak mulia, cerdas, dan berwawasan luas.',
+        'Selamat datang di Berita SMK Tunas Kasih , tempat di mana pendidikan berkualitas dan nilai-nilai Islam berpadu harmonis. Kami berkomitmen untuk membentuk generasi yang berakhlak mulia, cerdas, dan berwawasan luas.',
     },
   },
   methods: {

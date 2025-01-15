@@ -156,7 +156,7 @@ const props = defineProps({
   },
   defaultTitle: {
     type: String,
-    default: 'Berita SMK Tunas Kasih Bettet Pamekasan',
+    default: 'Berita SMK Tunas Kasih ',
   },
   href: {
     type: String,

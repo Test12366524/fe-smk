@@ -11,7 +11,7 @@
             <v-col md="12" lg="6" cols="12" class="px-6 d-flex align-center">
               <div class="text">
                 <h4 class="use-text-title">
-                  Berita SMK Tunas Kasih Bettet Pamekasan
+                  Berita SMK Tunas Kasih 
                 </h4>
                 <h5 class="use-text-subtitle">
                   Prestasi Tiada Henti, Cerdas Islami dan Berkelas Dunia

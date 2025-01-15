@@ -59,11 +59,11 @@ const getTitle = ref('');
 const menus = ref([
   {
     key: 'sejarah-singkat',
-    title: 'Sejarah Singkat Berita SMK Tunas Kasih Bettet Pamekasan',
+    title: 'Sejarah Singkat Berita SMK Tunas Kasih ',
   },
   {
     key: 'visi-misi',
-    title: 'Visi Misi Berita SMK Tunas Kasih Bettet Pamekasan',
+    title: 'Visi Misi Berita SMK Tunas Kasih ',
   },
   {
     key: 'sarana-prasarana',
@@ -94,7 +94,7 @@ const menus = ref([
 const handleSetContent = (keyValue) => {
   const pageTitle = menus.value.find((menu) => menu.key === keyValue).title;
   getTitle.value =
-    pageTitle || 'Visi Misi Berita SMK Tunas Kasih Bettet Pamekasan';
+    pageTitle || 'Visi Misi Berita SMK Tunas Kasih ';
 };
 
 watch(selectedMenu, (newValue) => {
